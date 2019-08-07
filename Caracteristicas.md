@@ -14,9 +14,17 @@ Más tarde:
 
 ## Enlaces
 - [Función para obtener los tags del mp3](https://www.php.net/manual/es/function.id3-get-tag.php)
+- IP de la base de datos: [192.168.254.19]192.168.254.19
 
 ## Base de datos
 En principio:
 - Usuarios
 - Canciones
 - Listas de reproducción
+
+## Pantallas
+- Bootstrap
+- Bootswatch tema Darkly
+### Inicio
+- Anchos: col-3 | col-6 | col3
+- [Imagen]
