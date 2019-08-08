@@ -27,4 +27,4 @@ En principio:
 - Bootswatch tema Darkly
 ### Inicio
 - Anchos: col-3 | col-6 | col3
-- [Imagen]
+- [Imagen](https://github.com/Selphyz/proyectospoty/blob/master/inicio-spoty.png)
