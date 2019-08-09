@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="node_modules/bootswatch/distdarkly/bootstrap.css">
-    <title>Cola de reproducción</title>
+    <title>Document</title>
 </head>
 <body>
-hola
+    <?php 
+        echo "Hello World!!"; //Faltaba el ; :)
+    ?>
 </body>
 </html>
