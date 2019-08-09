@@ -14,7 +14,12 @@
     "bootswatch": "^4.3.1"
 =======
     "bootswatch": "^4.3.1",
+<<<<<<< Updated upstream
     "jquery": "^3.4.1"
 >>>>>>> baf4eeed8e30eb20ce557696101ad0e168d2e114
+=======
+    "jquery": "^3.4.1",
+    "popper.js": "^1.15.0"
+>>>>>>> Stashed changes
   }
 }
