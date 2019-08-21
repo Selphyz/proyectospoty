@@ -20,7 +20,9 @@
                 <span id="titulo" name="titulo">Highway to Hell</span>
             </div>
             <div id="acciones">
-                <i class="far fa-heart px-1"></i><i class="fas fa-heart px-1"></i><i class="fas fa-plus px-1"></i>
+                <i id="corazon" class="far fa-heart px-1"></i>
+                <!-- <i class="fas fa-heart px-1"></i> -->
+                <i class="fas fa-plus px-1"></i>
             </div>
         </div>
         <div class="d-flex justify-content-between bg-primary p-1">
@@ -53,5 +55,6 @@
     </div>
 
     <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="cola_repr.js"></script>
 </body>
 </html>
