@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {# Búsqueda, parte superior #}
+    <div class='row'>
+        <div class='col-12'>
+            {{ include('musica/_busqueda.html.twig') }}    
+        </div>
+    </div>
+
+    {# Cuerpo #}
+    <div class='row'>
+        {# Cola de reproducción #}
+        <div class='col-4'>
+            {{ include('musica/_cola_repr.html.twig') }}    
+        </div>
+        {# Resultados de la Búsqueda #}
+        <div class='col-4'>
+            {{ include('musica/_resultados.html.twig') }}    
+        </div>
+        {# Listas de reproducción #}
+        <div class='col-3'>
+            {{ include('musica/_listas_repr.html.twig') }}    
+        </div>
+    </div>
+
+    {# Reproduciendo #}
+    <div class='row'>
+        <div class='col-12'>
+            {{ include('musica/_reproduciendo.html.twig') }}    
+        </div>
+    </div>
+
+{% endblock %}
