@@ -5,25 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+    {% block stylesheets %}
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
     <link rel="stylesheet" href="./public/node_modules/bootswatch/dist/slate/bootstrap.css">
-
-    {% block stylesheets %}{% endblock %}
+    
+    {% endblock %}
 
     <title>cola de reproducción</title>
 </head>
+
+{% block body %}
 <body>
-    <div class="container bg-dark">
-
-        {% block body %}{% endblock %}
-
+    <div class="container bg-dark"> 
     </div>
 
-
+    {% block javascripts %}
     <script src="../public/node_modules/dist/jquery-3.4.1.js"></script>
     <script src="../public/node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <script src="cola_repr.js"></script>
-    {% block javascripts %}{% endblock %}
+    {% endblock %}
 
 </body>
+{% endblock %}
+
 </html>
