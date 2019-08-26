@@ -23,20 +23,22 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
+    <ul class="nav navbar-nav navbar-left">
         
-    <a class="navbar-brand" style="font-size:150%;" href="#">Biblioteca<i  class="glyphicon glyphicon-folder-open"></i></a>
+    <li><a class="navbar-brand" style="font-size:150%;" href="#">Biblioteca<i  class="glyphicon glyphicon-folder-open"></i></a></li>
     </div>
     <ul class="nav navbar-nav">
       <li class="active">
+      </ul>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" style="width:350px;height:30px;" type="text" placeholder="">
-            <button style="font-size:110%;" class="btn btn-secondary my-2 my-sm-0" type="submit">Buscar</button>
+            <button style="font-size:125%;" class="btn btn-secondary my-2 my-sm-0" type="submit">Buscar</button>
         </form>
     </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       
-      <li><a style="font-size:150%;" href="/proyectospoty/plogin2.php">Iniciar sesion</a></li>
+      <li><a style="font-size:150%;" href="/proyectospoty/plogin.php">Iniciar sesion</a></li>
       <li><a style="font-size:150%;" href="/proyectospoty/pregistro.php">Registrarse</a></li>
     </ul>
   </div>
