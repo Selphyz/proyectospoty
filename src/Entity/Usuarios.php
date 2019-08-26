@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -35,6 +37,28 @@ class Usuarios
      */
     private $password = 'NULL';
 
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="rol", type="string", length=70, nullable=true, options={"default"="NULL"})
+     */
+    private $rol = 'NULL';
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Canciones", mappedBy="usuario")
+     */
+    private $cancion;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->cancion = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -64,5 +88,44 @@ class Usuarios
         return $this;
     }
 
+    public function getRol(): ?string
+    {
+        return $this->rol;
+    }
+
+    public function setRol(?string $rol): self
+    {
+        $this->rol = $rol;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Canciones[]
+     */
+    public function getCancion(): Collection
+    {
+        return $this->cancion;
+    }
+
+    public function addCancion(Canciones $cancion): self
+    {
+        if (!$this->cancion->contains($cancion)) {
+            $this->cancion[] = $cancion;
+            $cancion->addUsuario($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCancion(Canciones $cancion): self
+    {
+        if ($this->cancion->contains($cancion)) {
+            $this->cancion->removeElement($cancion);
+            $cancion->removeUsuario($this);
+        }
+
+        return $this;
+    }
 
 }
