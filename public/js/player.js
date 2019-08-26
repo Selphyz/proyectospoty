@@ -56,7 +56,7 @@ Player.prototype = {
     } else {
       sound = data.howl = new Howl({
         //src: ['./audio/' + data.file + '.webm', './audio/' + data.file + '.mp3'],
-        src: ['./audio/' + data.file + '.mp3'],
+        src: ['./assets/audio/' + data.file + '.mp3'],
         html5: true, // Force to HTML5 so that the audio can stream in (best for large files).
         onplay: function() {
           // Display the duration.
@@ -271,23 +271,21 @@ Player.prototype = {
 };
 
 // Setup our new audio player class and pass it the playlist.
-var player = new Player([
-  {
-    title: 'Rave Digger',
-    file: 'rave_digger',
-    howl: null
-  },
-  {
-    title: '80s Vibe',
-    file: '80s_vibe',
-    howl: null
-  },
-  {
-    title: 'Running Out',
-    file: 'running_out',
-    howl: null
-  }
-]);
+var player;
+
+$.ajax({
+    url:"/listaCanciones",
+    type:"json",
+    async: false,
+    success: function(res){
+      alert("Funciona");
+      player=new Player(res);
+    },
+    error: function(){
+      alert('Error');
+    }
+})
+
 
 // Bind our player controls.
 playBtn.addEventListener('click', function() {
