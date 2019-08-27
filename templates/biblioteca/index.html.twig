@@ -3,9 +3,9 @@
 {% block title %}Hello BibliotecaController!{% endblock %}
 
 {% block body %}
-<div class="row">
+<div class="row ml-3">
     {% for cancion in canciones %}
-        <div class="col-md-2 m-1 p-1">{{cancion.url}}</div>    
+        <div class="col-md-2 m-1 p-1"><a href="./assets/audio/{{ cancion.url }}">{{ cancion.url }}</a></div>    
     {% else %}
         <div class="col-md-2">Error, no hay canciones</div>    
     {% endfor %}
