@@ -2,13 +2,15 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Canciones
  *
  * @ORM\Table(name="canciones")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\CancionesRepository")
  */
 class Canciones
 {
@@ -26,21 +28,38 @@ class Canciones
      *
      * @ORM\Column(name="url", type="string", length=100, nullable=true, options={"default"="NULL"})
      */
-    private $url = 'NULL';
+    private $url;
 
     /**
-     * @var string|null
+     * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\Column(name="album", type="string", length=100, nullable=true, options={"default"="NULL"})
+     * @ORM\ManyToMany(targetEntity="Usuarios", inversedBy="cancion")
+     * @ORM\JoinTable(name="canciones_usuarios",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="cancion_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
+     *   }
+     * )
      */
-    private $album = 'NULL';
+    private $usuario;
 
     /**
-     * @var string|null
+     * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\Column(name="genero", type="string", length=50, nullable=true, options={"default"="NULL"})
+     * @ORM\ManyToMany(targetEntity="Listas", mappedBy="idCancion")
      */
-    private $genero = 'NULL';
+    private $idLista;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->usuario = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->idLista = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -59,29 +78,58 @@ class Canciones
         return $this;
     }
 
-    public function getAlbum(): ?string
+    /**
+     * @return Collection|Usuarios[]
+     */
+    public function getUsuario(): Collection
     {
-        return $this->album;
+        return $this->usuario;
     }
 
-    public function setAlbum(?string $album): self
+    public function addUsuario(Usuarios $usuario): self
     {
-        $this->album = $album;
+        if (!$this->usuario->contains($usuario)) {
+            $this->usuario[] = $usuario;
+        }
 
         return $this;
     }
 
-    public function getGenero(): ?string
+    public function removeUsuario(Usuarios $usuario): self
     {
-        return $this->genero;
-    }
-
-    public function setGenero(?string $genero): self
-    {
-        $this->genero = $genero;
+        if ($this->usuario->contains($usuario)) {
+            $this->usuario->removeElement($usuario);
+        }
 
         return $this;
     }
 
+    /**
+     * @return Collection|Listas[]
+     */
+    public function getIdLista(): Collection
+    {
+        return $this->idLista;
+    }
+
+    public function addIdListum(Listas $idListum): self
+    {
+        if (!$this->idLista->contains($idListum)) {
+            $this->idLista[] = $idListum;
+            $idListum->addIdCancion($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIdListum(Listas $idListum): self
+    {
+        if ($this->idLista->contains($idListum)) {
+            $this->idLista->removeElement($idListum);
+            $idListum->removeIdCancion($this);
+        }
+
+        return $this;
+    }
 
 }

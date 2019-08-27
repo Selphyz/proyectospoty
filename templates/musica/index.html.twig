@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+<link rel="stylesheet" href="./css/player_styles.css">
+{% endblock %}
+
 {% block body %}
     {# Búsqueda, parte superior #}
     <div class='row'>
@@ -8,7 +12,7 @@
         </div>
     </div>
 
-    {# Cuerpo #}
+    {# Cuerpo, fila central#}
     <div class='row'>
         {# Cola de reproducción #}
         <div class='col-4'>
@@ -24,11 +28,18 @@
         </div>
     </div>
 
-    {# Reproduciendo #}
+    {# Reproduciendo, fila inferior #}
     <div class='row'>
         <div class='col-12'>
             {{ include('musica/_reproduciendo.html.twig') }}    
         </div>
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+  <script src="./js/howler.core.js"></script>
+  <script src="./js/siriwave.js"></script>
+  <script src="./js/player.js"></script>
+  <script src="./js/cola_repr.js"></script>
 {% endblock %}

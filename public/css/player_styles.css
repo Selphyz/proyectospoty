@@ -1,23 +1,23 @@
-html {
+/*html {
   width: 100%;
-  height: 100%;  
+  height: 100%;
   overflow: hidden;
   padding: 0;
   margin: 0;
   outline: 0;
-}
+}*/
 
-body {
+#cuerpo {
   width: 100%;
-  height: 100%;
+  /*height: 100%;*/
   padding: 0;
   margin: 0;
   overflow: hidden;
   background: #78cc78;
-  background: -moz-linear-gradient(-45deg, #78cc78 0%, #53be53 100%);
-  background: -webkit-linear-gradient(-45deg, #78cc78 0%, #53be53 100%);
-  background: linear-gradient(135deg, #78cc78 0%, #53be53 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#78cc78', endColorstr='#53be53', GradientType=1);
+  background: -moz-linear-gradient(-45deg, #78cc78 0%, #2d792d 100%);
+  background: -webkit-linear-gradient(-45deg, #78cc78 0%, #2d792d 100%);
+  background: linear-gradient(135deg, #78cc78 0%, #2d792d 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#78cc78', endColorstr='#2d792d', GradientType=1);
   font-family: "Helvetica Neue", "Futura", "Trebuchet MS", Arial;
   -webkit-user-select: none;
   user-select: none;
@@ -204,10 +204,10 @@ body {
   }
 }
 
-/* Plylist */
+/* Playlist */
 #playlist {
   width: 100%;
-  height: 100%;
+  /*height: 100%;*/
   position: absolute;
   top: 0;
   left: 0;
@@ -216,7 +216,7 @@ body {
 }
 #list {
   width: 100%;
-  height: 100%;
+  /*height: 100%;*/
   position: absolute;
   top: 0;
   left: 0;
