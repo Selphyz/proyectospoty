@@ -19,7 +19,7 @@
             {{ include('musica/_cola_repr.html.twig') }}    
         </div>
         {# Resultados de la Búsqueda #}
-        <div class='col-4'>
+        <div id='divResultados' class='col-4 overflow-auto'>
             {{ include('musica/_resultados.html.twig') }}    
         </div>
         {# Listas de reproducción #}
@@ -29,7 +29,7 @@
     </div>
 
     {# Reproduciendo, fila inferior #}
-    <div class='row'>
+    <div class='row fixed-bottom'>
         <div class='col-12'>
             {{ include('musica/_reproduciendo.html.twig') }}    
         </div>
@@ -42,4 +42,5 @@
   <script src="./js/siriwave.js"></script>
   <script src="./js/player.js"></script>
   <script src="./js/cola_repr.js"></script>
+  <script src="js/principal.js"></script>
 {% endblock %}
