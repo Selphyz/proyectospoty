@@ -2,18 +2,19 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Canciones;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 
 /**
  * Usuarios
  *
  * @ORM\Table(name="usuarios")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\UsuariosRepository")
  * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
  */
 class Usuarios implements UserInterface
