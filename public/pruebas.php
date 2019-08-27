@@ -38,8 +38,8 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
       
-      <li><a style="font-size:150%;" href="/proyectospoty/plogin.php">Iniciar sesion</a></li>
-      <li><a style="font-size:150%;" href="/proyectospoty/pregistro.php">Registrarse</a></li>
+      <li><a style="font-size:150%;" href="/proyectospoty/public/plogin.php">Iniciar sesion</a></li>
+      <li><a style="font-size:150%;" href="/proyectospoty/public/pregistro.php">Registrarse</a></li>
     </ul>
   </div>
 </nav>

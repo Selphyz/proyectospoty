@@ -1,21 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-   
-	<link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/slate/bootstrap.min.css" rel="stylesheet" integrity="sha384-FBPbZPVh+7ks5JJ70RJmIaqyGnvMbeJ5JQfEbW0Ac6ErfvEg9yG56JQJuMNptWsH" crossorigin="anonymous">
+{% extends 'base.html.twig' %}
 
-	<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-	
-	
+{% block title %}{% endblock %}
 
-  
-    <style>
-    
+{% block stylesheets %}
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
+{% endblock %}
+
+{% block body %}
+
+<style>
 body{
 	font-size: 12px;
  	background-image: url("https://www.lacupulamusic.com/assets/img/home2.jpg");
@@ -53,23 +47,18 @@ body{
 	font-size: 14px;
 }
 
-	
+</style>
 
-   </style>
-   
-</head>
-<body>
-    
 <div id="Contenedor">
 		 <div class="Icon">
                     
                    <span><i class="glyphicon glyphicon-user"></i></span>
          </div>
 <div class="ContentForm">
-		 	<form action="" method="post" name="FormEntrar">
+<form action="" method="post" name="FormEntrar">
 		 		<div class="input-group input-group-lg">
-				  <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-				  <input type="email" style="height:46px;" class="form-control" name="correo" placeholder="Correo" id="Correo" required>
+				  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+				  <input type="text" style="height:46px;" class="form-control" name="username" placeholder="Nombre de usuario" id="user" required>
 				</div>
 				<br>
 				<div class="input-group input-group-lg">
@@ -81,8 +70,8 @@ body{
 				
 				<div class="opcioncontra"><a href="/proyectospoty/public/pregistro.php">¿No tienes cuenta? Crea una aqui</a></div>
 		 	</form>
-		 </div>	
+           </div>	
 		 </div>
-		 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-</body>
-</html>
+
+{% endblock %}
+
