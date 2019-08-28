@@ -4,8 +4,11 @@
 
 #central {
   border: 1px solid cyan;
+}
+#result{
   position: relative;
   overflow-y: auto;
+  height: inherit;
 }
 
 #cola, #result {
@@ -26,5 +29,5 @@
 }
 
 #central {
-  height: 600px;
+  height: 70vh;
 }
