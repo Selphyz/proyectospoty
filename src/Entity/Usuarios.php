@@ -2,17 +2,22 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Canciones;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
  * Usuarios
  *
  * @ORM\Table(name="usuarios")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\UsuariosRepository")
+ * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
  */
-class Usuarios
+class Usuarios implements UserInterface
 {
     /**
      * @var int
@@ -26,9 +31,14 @@ class Usuarios
     /**
      * @var string|null
      *
-     * @ORM\Column(name="usuario", type="string", length=70, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="username", type="string", length=70, nullable=true, options={"default"="NULL"})
      */
-    private $usuario = 'NULL';
+    private $username = 'NULL';
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
 
     /**
      * @var string|null
@@ -64,14 +74,33 @@ class Usuarios
         return $this->id;
     }
 
-    public function getUsuario(): ?string
+    public function getUsername(): ?string
     {
-        return $this->usuario;
+        return $this->username;
     }
 
-    public function setUsuario(?string $usuario): self
+    public function setUsername(?string $username): self
     {
-        $this->usuario = $usuario;
+        $this->username = $username;
+
+        return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
 
         return $this;
     }
@@ -86,6 +115,12 @@ class Usuarios
         $this->password = $password;
 
         return $this;
+    }
+    public function getSalt(){
+
+    }
+    public function eraseCredentials(){
+        
     }
 
     public function getRol(): ?string
