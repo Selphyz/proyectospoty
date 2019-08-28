@@ -1,38 +1,17 @@
 <div id="cuerpo">
-  <!-- Top Info -->
-  <div id="title">
-    <span id="track"></span>
-    <div id="timer">0:00</div>
-    <div id="duration">0:00</div>
-  </div>
 
-  <!-- Controls -->
-  <div class="controlsOuter">
-    <div class="controlsInner">
-      <div id="loading"></div>
-      <div class="btn" id="playBtn"></div>
-      <div class="btn" id="pauseBtn"></div>
-      <div class="btn" id="prevBtn"></div>
-      <div class="btn" id="nextBtn"></div>
-    </div>
-    <div class="btn" id="playlistBtn"></div>
-    <div class="btn" id="volumeBtn"></div>
-  </div>
+    <h1> Mi Radio </h1>
 
-  <!-- Progress -->
-  <div id="waveform"></div>
-  <div id="bar"></div>
-  <div id="progress"></div>
+    <audio id='player' src='cancion1.mp3'></audio>
 
-  <!-- Playlist -->
-  <div id="playlist">
-    <div id="list"></div>
-  </div>
+    <input id='btnIniciar' type='button' value='Play'/>
+    <input id='btnNext' type='button' value='Next'/>
+    <input id='btnStop' type='button' value='Stop'/>
+    <br/>
+    <input class='btn-song' type='button' numeroCancion='0' value='Cancion 1'/>
+    <input class='btn-song' type='button' numeroCancion='1' value='Cancion 2'/>
 
-  <!-- Volume -->
-  <div id="volume" class="fadeout">
-    <div id="barFull" class="bar"></div>
-    <div id="barEmpty" class="bar"></div>
-    <div id="sliderBtn"></div>
-  </div>
+    <script src='node_modules/jquery/dist/jquery.js'></script>
+    <script src='node_modules/howler/dist/howler.js'></script>
 </div>
+</html>
