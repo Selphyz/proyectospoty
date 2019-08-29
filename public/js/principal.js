@@ -13,6 +13,13 @@ var ns = {
         }
         ns.play();
     },
+    previous : function(){
+        ns.activa=ns.activa-1;
+        if (ns.activa<0){
+            ns.activa=0;
+        }
+        ns.play();
+    },
     goTo: function(obj){
         ns.activa=obj.getAttribute('numeroCancion');
         ns.play();

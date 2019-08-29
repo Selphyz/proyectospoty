@@ -1,14 +1,19 @@
-<div id="cuerpo">
 
-    <h4>Reproduciendo</h4>
+<h4>Reproduciendo</h4>
 
-    <audio id='player' src='cancion1.mp3'></audio>
-
-    <input id='btnIniciar' type='button' value='Play'/>
-    <input id='btnNext' type='button' value='Next'/>
-    <input id='btnStop' type='button' value='Stop'/>
-    <br/>
-    <input class='btn-song' type='button' numeroCancion='0' value='Cancion 1'/>
-    <input class='btn-song' type='button' numeroCancion='1' value='Cancion 2'/>
+<audio id='player' src='cancion1.mp3'></audio>
+<div class="container-fluid">
+<div class="row">
+    <div id="titulo">
+    </div>
+    <div id="botones">
+        <input id='btnPlay' class="btn btn-primary d-inline-flex flex-wrap align-self-center" type='button' value='Play'/>
+        <input id='btnNext' class="btn btn-primary d-inline-flex flex-wrap align-self-center" type='button' value='Next'/>
+        <input id='btnNext' class="btn btn-primary d-inline-flex flex-wrap align-self-center" type='button' value='Previous'/>
+        <input id='btnStop' class="btn btn-primary d-inline-flex flex-wrap align-self-center" type='button' value='Stop'/>
+    </div>
 </div>
-</html>
+</div>
+{#<br/>
+<input class='btn-song' type='button' numeroCancion='0' value='Cancion 1'/>
+<input class='btn-song' type='button' numeroCancion='1' value='Cancion 2'/> #}
