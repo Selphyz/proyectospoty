@@ -5,41 +5,42 @@
 {% endblock %}
 
 {% block body %}
+<div class="container-fluid col-12">
     {# Búsqueda, parte superior #}
-    <div class='row'>
+    <div id="superior" class='row col-12'>
         <div class='col-12'>
             {{ include('musica/_busqueda.html.twig') }}    
         </div>
     </div>
 
     {# Cuerpo, fila central#}
-    <div class='row'>
+    <div id="central" class='row col-12'>
         {# Cola de reproducción #}
-        <div class='col-4'>
+        <div id="cola" class="col-4">
             {{ include('musica/_cola_repr.html.twig') }}    
         </div>
         {# Resultados de la Búsqueda #}
-        <div class='col-4'>
+        <div id='result' class="col-4">
             {{ include('musica/_resultados.html.twig') }}    
         </div>
         {# Listas de reproducción #}
-        <div class='col-3'>
+        <div id="listas" class="col-4">
             {{ include('musica/_listas_repr.html.twig') }}    
         </div>
     </div>
 
     {# Reproduciendo, fila inferior #}
-    <div class='row fixed-bottom m-5'>
+    <div id="inferior" class='row fixed-bottom'>
         <div class='col-12'>
             {{ include('musica/_reproduciendo.html.twig') }}    
         </div>
     </div>
+</div>
 
 {% endblock %}
 
 {% block javascripts %}
-  <script src="./js/howler.core.js"></script>
-  <script src="./js/siriwave.js"></script>
-  <script src="./js/player.js"></script>
-  <script src="./js/cola_repr.js"></script>
+  <script src="js/howler.core.js"></script>
+  <script src="js/cola_repr.js"></script>
+  <script src="js/principal.js"></script>
 {% endblock %}

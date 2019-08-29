@@ -12,12 +12,12 @@ $(document).ready(function(){
     });
 
     //Cambiamos el color al pasar el ratón
-    $("#pista").mouseenter(function () {
+    $(".hover").mouseenter(function () {
         $(this).removeClass("bg-primary");
         $(this).addClass("bg-default");
     });
 
-    $("#pista").mouseleave(function () {
+    $(".hover").mouseleave(function () {
         $(this).removeClass("bg-default");
         $(this).addClass("bg-primary");
     });
