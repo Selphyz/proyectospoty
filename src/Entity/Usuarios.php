@@ -31,9 +31,9 @@ class Usuarios implements UserInterface
     /**
      * @var string|null
      *
-     * @ORM\Column(name="username", type="string", length=70, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="usuario", type="string", length=70, nullable=true, options={"default"="NULL"})
      */
-    private $username = 'NULL';
+    private $username;
 
     /**
      * @ORM\Column(type="json")
@@ -45,14 +45,14 @@ class Usuarios implements UserInterface
      *
      * @ORM\Column(name="password", type="string", length=70, nullable=true, options={"default"="NULL"})
      */
-    private $password = 'NULL';
+    private $password;
 
     /**
      * @var string|null
      *
      * @ORM\Column(name="rol", type="string", length=70, nullable=true, options={"default"="NULL"})
      */
-    private $rol = 'NULL';
+    private $rol;
 
     /**
      * @var \Doctrine\Common\Collections\Collection

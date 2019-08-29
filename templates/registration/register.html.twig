@@ -1,6 +1,4 @@
-{% extends 'base.html.twig' %}
 
-{% block title %}Spoty Registro{% endblock %}
 {% block stylesheets %}
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
@@ -17,6 +15,7 @@ body{
  	background-image: url("https://www.lacupulamusic.com/assets/img/home2.jpg");
 	 background-size: cover;
 }
+
 
 #Contenedor{
 	width: 450px;
@@ -59,42 +58,39 @@ body{
                    <span><i class="glyphicon glyphicon-user"></i></span>
          </div>
 <div class="ContentForm">
-		 	<form id="proof" action="" method="post" name="FormEntrar">
+			{{ form_start(registrationForm, {"id":"proof"}) }}		 
 		 		<div class="input-group input-group-lg">
 				  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-				  <input type="text" style="height:46px;" class="form-control" name="nombre" placeholder="Nombre de usuario" id="Nombre" required>
+				  {{ form_widget(registrationForm.username, {'attr' : {"class": "form-control", "placeholder": "Nombre de usuario" }}) }}
                 </div>
                 <br>
                 
 				<div class="input-group input-group-lg">
 				  <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-				  <input type="password" style="height:46px;" name="contra" class="form-control" placeholder="******" required>
-				</div>
+				  {{ form_widget(registrationForm.plainPassword, {'attr' : {"class": "form-control", "placeholder": "Contraseña" } }) }}
+					</div>
                 <br>
-                <div class="input-group input-group-lg">
+                
+				<button class="btn btn-lg btn-primary btn-block btn-signin" id="IngresoLog" type="submit">Crear cuenta</button>
+				
+				<div class="opcioncontra"><a href="/proyectospoty/public/plogin.php">¿Ya tienes cuenta? Inicia sesión aqui</a></div>
+		 	{{ form_end(registrationForm) }}
+		 </div>	
+		 </div>
+
+  
+{% endblock %}
+
+
+<!--
+
+<div class="input-group input-group-lg">
 				  <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
 				  <input type="password" style="height:46px;" class="form-control" name="contraseña" placeholder="******" id="Correo" required>
                 </div>
                 <br>
-				<button class="btn btn-lg btn-primary btn-block btn-signin" id="IngresoLog" type="submit">Crear cuenta</button>
+				CONFIRMAR CONTRASEÑA
+
+				https://rojas.io/symfony-4-login-registration-system/
 				
-				<div class="opcioncontra"><a href="/proyectospoty/public/plogin.php">¿Ya tienes cuenta? Inicia sesión aqui</a></div>
-		 	</form>
-		 </div>	
-		 </div>
-		
-
-
-
-
-
-   {#} <h1>Register</h1>
-
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.username) }}
-        {{ form_row(registrationForm.plainPassword) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-
-        <button class="btn">Register</button>
-    {{ form_end(registrationForm) }}{#}
-{% endblock %}
+				-->
