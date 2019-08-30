@@ -8,7 +8,7 @@ var ns = {
     play : function(){
         $('#player').attr('src', 'assets/audio/' + listado[ns.activa] + '?rand=' + Math.random());
         $('#player').trigger('play');
-        $("#pistaActual").text(listado[ns.activa]);
+        $("#pistaActual").text(" " +  listado[ns.activa]);
     },
     previous : function(){
         ns.activa=parseInt(ns.activa)-1;
@@ -41,6 +41,7 @@ var ns = {
     // },
     stop: function(){
         $('#player').trigger('stop');
+        $("#pistaActual").text("");
     },
     recargarCanciones(){
         /*canciones=[];
