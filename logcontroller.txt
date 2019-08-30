@@ -1,0 +1,124 @@
+commit e2795467769ddfee913a09746a23baa513a4158e
+Author: matejadas <matejadas@outlook.com>
+Date:   Tue Aug 27 13:59:03 2019 +0200
+
+    búsqueda, resultados
+
+diff --git a/src/Controller/MusicaController.php b/src/Controller/MusicaController.php
+index 9b140b1..2abe88c 100644
+--- a/src/Controller/MusicaController.php
++++ b/src/Controller/MusicaController.php
+@@ -2,8 +2,11 @@
+ 
+ namespace App\Controller;
+ 
+-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
++use App\Entity\Canciones;
++use App\Repository\CancionesRepository;
++use Symfony\Component\HttpFoundation\Request;
+ use Symfony\Component\Routing\Annotation\Route;
++use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+ 
+ class MusicaController extends AbstractController
+ {
+@@ -12,8 +15,34 @@ class MusicaController extends AbstractController
+      */
+     public function index()
+     {
++        $repo=$this->getDoctrine()->getRepository(Canciones::class);
++        $canciones=$repo->colaCanciones();
+         return $this->render('musica/index.html.twig', [
+             'controller_name' => 'MusicaController',
++            'canciones'=>$canciones
+         ]);
+     }
++
++    /**
++     * @Route("/musicaBuscar", name="musicaBuscar")
++     */
++    public function musicaBuscar(Request $request, CancionesRepository $repo)
++    {
++        $texto=$request->query->get('texto');
++        if (strlen($texto)>0){
++            $canciones= $repo->buscarCanciones($texto);
++        }else{
++            $canciones=array();
++        }
++        
++        return $this->render("musica/_resultados.html.twig", [
++            "canciones"=>$canciones,
++        ]);      
++
++
++    }
++
++
++
++
+ }
+
+commit 91ea5d1fea86695206734ee8d7e5f4122a079e77
+Author: matejadas <matejadas@outlook.com>
+Date:   Fri Aug 23 14:04:06 2019 +0200
+
+    vie 23/08
+
+diff --git a/src/Controller/BibliotecaController.php b/src/Controller/MusicaController.php
+similarity index 50%
+copy from src/Controller/BibliotecaController.php
+copy to src/Controller/MusicaController.php
+index 206f7f0..9b140b1 100644
+--- a/src/Controller/BibliotecaController.php
++++ b/src/Controller/MusicaController.php
+@@ -5,15 +5,15 @@ namespace App\Controller;
+ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+ use Symfony\Component\Routing\Annotation\Route;
+ 
+-class BibliotecaController extends AbstractController
++class MusicaController extends AbstractController
+ {
+     /**
+-     * @Route("/biblioteca", name="biblioteca")
++     * @Route("/musica", name="musica")
+      */
+     public function index()
+     {
+-        return $this->render('biblioteca/index.html.twig', [
+-            'controller_name' => 'BibliotecaController',
++        return $this->render('musica/index.html.twig', [
++            'controller_name' => 'MusicaController',
+         ]);
+     }
+ }
+
+commit e7e368baca8a82ef1bf47b7207d1c21cd462573e
+Author: Carlos Dominguez <carlos.dom13@hotmail.com>
+Date:   Thu Aug 22 13:59:56 2019 +0200
+
+    jueves clase
+
+diff --git a/src/Controller/BibliotecaController.php b/src/Controller/BibliotecaController.php
+new file mode 100644
+index 0000000..206f7f0
+--- /dev/null
++++ b/src/Controller/BibliotecaController.php
+@@ -0,0 +1,19 @@
++<?php
++
++namespace App\Controller;
++
++use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
++use Symfony\Component\Routing\Annotation\Route;
++
++class BibliotecaController extends AbstractController
++{
++    /**
++     * @Route("/biblioteca", name="biblioteca")
++     */
++    public function index()
++    {
++        return $this->render('biblioteca/index.html.twig', [
++            'controller_name' => 'BibliotecaController',
++        ]);
++    }
++}

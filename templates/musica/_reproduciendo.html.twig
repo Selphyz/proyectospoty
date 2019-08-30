@@ -1,14 +1,23 @@
-<div id="cuerpo">
 
-    <h1> Mi Radio </h1>
+<h4>Reproduciendo</h4>
 
-    <audio id='player' src='cancion1.mp3'></audio>
-
-    <input id='btnIniciar' type='button' value='Play'/>
-    <input id='btnNext' type='button' value='Next'/>
-    <input id='btnStop' type='button' value='Stop'/>
-    <br/>
-    <input class='btn-song' type='button' numeroCancion='0' value='Cancion 1'/>
-    <input class='btn-song' type='button' numeroCancion='1' value='Cancion 2'/>
+<audio id='player' src='cancion1.mp3'></audio>
+<div class="container-fluid">
+<div class="row d-flex justify-content-center">
+    <div id="titulo">
+    </div>
+    <div id="botones">
+        <button id='btnPrevious' class="btn btn-primary d-inline-flex" type='button' value='Next'>
+            <i class="fas fa-step-backward"></i></button>
+        <button id='btnPlay' class="btn btn-primary d-inline-flex" type='button' value='Play'>
+            <i class="fas fa-play"></i></button>
+        <button id='btnNext' class="btn btn-primary d-inline-flex" type='button' value='Previous'>
+            <i class="fas fa-step-forward"></i></button>
+        <button id='btnStop' class="btn btn-primary d-inline-flex" type='button' value='Stop'>
+            <i class="fas fa-stop"></i></button>
+    </div>
 </div>
-</html>
+</div>
+{#<br/>
+<input class='btn-song' type='button' numeroCancion='0' value='Cancion 1'/>
+<input class='btn-song' type='button' numeroCancion='1' value='Cancion 2'/> #}

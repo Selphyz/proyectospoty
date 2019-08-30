@@ -1,31 +1,16 @@
-#superior {
-  border: 1px solid green;
-}
-
-#central {
-  border: 1px solid cyan;
-}
-#result{
+#cola, #result, #listas{
   position: relative;
   overflow-y: auto;
   height: inherit;
 }
 
-#cola, #result {
-  border: 1px solid red;
-}
-
-#listas {
-  border: 1px solid red;
+/*Alturas*/
+#superior {
+  height: 10vh;
 }
 
 #inferior {
-  border: 1px solid orange;
-}
-
-/*Alturas*/
-#superior, #inferior {
-  height: 20%;
+  height: 20vh;
 }
 
 #central {
