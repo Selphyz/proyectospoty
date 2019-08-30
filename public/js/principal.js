@@ -20,6 +20,7 @@ var ns = {
     play : function(){
         $('#player').attr('src', 'assets/audio/' + listado[ns.activa] + '?rand=' + Math.random());
         $('#player').trigger('play');
+        $("#pistaActual").text(" " +  listado[ns.activa]);
     },
     previous : function(){
         ns.activa=parseInt(ns.activa)-1;
@@ -48,6 +49,7 @@ var ns = {
     //     ns.play();
     // },
     stop: function(){
+<<<<<<< HEAD
         $('#player').trigger('pause');
         $('#player').attr('src', '');
         // $('#player').foreach(function(obj){
@@ -67,6 +69,10 @@ var ns = {
         }
         $("#btnMute>i").toggleClass("fas fa-volume-up");
         $("#btnMute>i").toggleClass("fas fa-volume-mute");
+=======
+        $('#player').trigger('stop');
+        $("#pistaActual").text("");
+>>>>>>> master
     },
     recargarCanciones(){
         /*canciones=[];

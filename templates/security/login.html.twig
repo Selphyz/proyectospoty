@@ -1,28 +1,102 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Log in!{% endblock %}
+{% block stylesheets %}
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+{% endblock %}
 
 {% block body %}
+
+<style>
+body{
+	font-size: 12px;
+ 	background-image: url("https://www.lacupulamusic.com/assets/img/home2.jpg");
+	background-size: cover;
+}
+#qwe{
+	text-align:right;
+	font-size: 16px;
+	color: white;
+}
+
+#Contenedor{
+	width: 450px;
+	margin: 50px auto;
+    border: 1px solid #ECE8E8;
+	height: 350px;
+	border-radius:8px;
+	padding: 0px 9px 0px 9px;
+	opacity: 0.75;
+	background-color:black;
+}
+
+
+.Icon span{
+	  
+      padding: 10px;
+      border-radius: 80px;
+}
+
+.Icon{
+     margin-top: 10px;
+     margin-bottom:10px; 
+     font-size: 50px;
+     text-align: center;
+}
+
+.opcioncontra{
+	text-align: center;
+	margin-top: 20px;
+	font-size: 14px;
+}
+
+</style>
+
+
 <form method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
     {% if app.user %}
-        <div class="mb-3">
+        <div class="mb-3" id="qwe">
             You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
     {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputUsername" class="sr-only">Username</label>
-    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+    <div id="Contenedor">
+		 <div class="Icon">
+                    
+                   <span><i class="glyphicon glyphicon-user"></i></span>
+         </div>
+			<div class="ContentForm">
+			<form method="post" name="FormEntrar">
+		 		<div class="input-group input-group-lg">
+				  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+				  <input type="text" style="height:46px;"  value="{{ last_username }}" class="form-control" name="username" placeholder="Nombre de usuario" id="user" required autofocus>
+				</div>
+				<br>
+				<div class="input-group input-group-lg">
+				  <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+				  <input type="password" style="height:46px;" name="password" class="form-control" placeholder="******" required>
+				</div>
+				<br>
 
-    <input type="hidden" name="_csrf_token"
+                <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
     >
+                
+				<button class="btn btn-lg btn-primary btn-block btn-signin" id="IngresoLog" type="submit" >Entrar</button>
+				
+				<div class="opcioncontra"><a href="/register">¿No tienes cuenta? Crea una aqui</a></div>
+		 	</form>
+           </div>	
+		 </div>
+		    
+</form>
+{% endblock %}
+
 
     {#
         Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
@@ -35,8 +109,4 @@
         </div>
     #}
 
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
-{% endblock %}
+ 
