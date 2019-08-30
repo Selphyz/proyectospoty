@@ -1,0 +1,211 @@
+commit b569bf7040d94276c7b6cb5034413f4abdbc6660
+Author: matejadas <matejadas@outlook.com>
+Date:   Thu Aug 29 13:54:15 2019 +0200
+
+    player
+
+diff --git a/public/js/principal.js b/public/js/principal.js
+index 3dedd06..09d09f2 100644
+--- a/public/js/principal.js
++++ b/public/js/principal.js
+@@ -1,18 +1,11 @@
+ var ns = {
+ 
+-    canciones: ['cancion1.mp3', 'cancion2.mp3'],
++    canciones: ['AC DC - Highway To Hell (1979) - 03 - Walk All Over You.mp3', 'cancion2.mp3'],
+     activa: 0,
+     play : function(){
+-        $('#player').attr('src', ns.canciones[ns.activa])
++        $('#player').attr('src', 'assets/audio/' + ns.canciones[ns.activa] + '?rand=' + Math.random());
+         $('#player').trigger('play');
+     },
+-    next : function(){
+-        ns.activa=ns.activa+1;
+-        if (ns.activa==ns.canciones.length){
+-            ns.activa=0;
+-        }
+-        ns.play();
+-    },
+     previous : function(){
+         ns.activa=ns.activa-1;
+         if (ns.activa<0){
+@@ -20,12 +13,26 @@ var ns = {
+         }
+         ns.play();
+     },
+-    goTo: function(obj){
+-        ns.activa=obj.getAttribute('numeroCancion');
++    next : function(){
++        ns.activa=ns.activa+1;
++        if (ns.activa==ns.canciones.length){
++            ns.activa=0;
++        }
++        alert(ns.activa);
+         ns.play();
+     },
++    // goTo: function(obj){
++    //     ns.activa=obj.getAttribute('numeroCancion');
++    //     ns.play();
++    // },
+     stop: function(){
+         $('#player').trigger('stop');
++    },
++    recargarCanciones(){
++        /*canciones=[];
++        $('#claseCancion').forEach(function(obj){
++            array_push(obj.getAttribute('ruta'));
++        }*/
+     }
+ }
+ 
+@@ -36,9 +43,15 @@ $(document).ready(function(){
+     $('#btnIniciar').on('click', function(){
+         ns.play();
+     });
++    $('#btnPlay').on('click', function(){
++        ns.play();
++    });
+     $('#player').on('ended', function(){
+         ns.next();
+     })
++    $('#btnPrevious').on('click', function(){
++        ns.previous();
++    })
+     $('#btnNext').on('click', function(){
+         ns.next();
+     })
+
+commit ecea5a1e2aa6c79c8634df23eabc9e8d6d69e7b5
+Author: matejadas <matejadas@outlook.com>
+Date:   Thu Aug 29 10:57:59 2019 +0200
+
+    botones
+
+diff --git a/public/js/principal.js b/public/js/principal.js
+index 576226e..3dedd06 100644
+--- a/public/js/principal.js
++++ b/public/js/principal.js
+@@ -13,6 +13,13 @@ var ns = {
+         }
+         ns.play();
+     },
++    previous : function(){
++        ns.activa=ns.activa-1;
++        if (ns.activa<0){
++            ns.activa=0;
++        }
++        ns.play();
++    },
+     goTo: function(obj){
+         ns.activa=obj.getAttribute('numeroCancion');
+         ns.play();
+
+commit 1f56915d35b634161bc0f1df6b9b09f7db3b60d7
+Author: matejadas <matejadas@outlook.com>
+Date:   Wed Aug 28 12:34:22 2019 +0200
+
+    cambio al reproductor sencillo
+
+diff --git a/public/js/principal.js b/public/js/principal.js
+index 508b65b..576226e 100644
+--- a/public/js/principal.js
++++ b/public/js/principal.js
+@@ -1,25 +1,44 @@
+ var ns = {
+ 
+-    reproducir: function(){
+-        //Código
++    canciones: ['cancion1.mp3', 'cancion2.mp3'],
++    activa: 0,
++    play : function(){
++        $('#player').attr('src', ns.canciones[ns.activa])
++        $('#player').trigger('play');
+     },
+-    buscar: function(){
+-        val=$('#txtBuscar').val();
+-        $.ajax({
+-            url:"/musicaBuscar",
+-            data: {
+-                texto: val
+-            },
+-            success: function(res){
+-                $('#divResultados').html(res);
+-            }
+-        });
++    next : function(){
++        ns.activa=ns.activa+1;
++        if (ns.activa==ns.canciones.length){
++            ns.activa=0;
++        }
++        ns.play();
++    },
++    goTo: function(obj){
++        ns.activa=obj.getAttribute('numeroCancion');
++        ns.play();
++    },
++    stop: function(){
++        $('#player').trigger('stop');
+     }
+-
+ }
+ 
+ $(document).ready(function(){
+     $('#btnBuscar').on("click", function(){
+         ns.buscar();
+     })
++    $('#btnIniciar').on('click', function(){
++        ns.play();
++    });
++    $('#player').on('ended', function(){
++        ns.next();
++    })
++    $('#btnNext').on('click', function(){
++        ns.next();
++    })
++    $('#btnStop').on('click', function(){
++        ns.stop();
++    })
++    $('.btn-song').on('click', function(){
++        ns.goTo(this);
++    });
+ })
+\ No newline at end of file
+
+commit e2795467769ddfee913a09746a23baa513a4158e
+Author: matejadas <matejadas@outlook.com>
+Date:   Tue Aug 27 13:59:03 2019 +0200
+
+    búsqueda, resultados
+
+diff --git a/public/js/principal.js b/public/js/principal.js
+new file mode 100644
+index 0000000..508b65b
+--- /dev/null
++++ b/public/js/principal.js
+@@ -0,0 +1,25 @@
++var ns = {
++
++    reproducir: function(){
++        //Código
++    },
++    buscar: function(){
++        val=$('#txtBuscar').val();
++        $.ajax({
++            url:"/musicaBuscar",
++            data: {
++                texto: val
++            },
++            success: function(res){
++                $('#divResultados').html(res);
++            }
++        });
++    }
++
++}
++
++$(document).ready(function(){
++    $('#btnBuscar').on("click", function(){
++        ns.buscar();
++    })
++})
+\ No newline at end of file
