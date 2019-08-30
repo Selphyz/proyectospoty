@@ -22,7 +22,6 @@
 
 .trackslider {
   -webkit-appearance: media-seek-back-button;
-  width: 100%;
   height: 5px;
   background: rgba(183, 241, 255, 0.95);
   outline: none;
@@ -30,6 +29,8 @@
   -webkit-transition: .2s;
   transition: opacity .2s;
   border-radius: 4px;
+  width: 34vw;
+  margin-top: 5px;
 }
 
 .trackslider:hover {
