@@ -1,26 +1,25 @@
-var listado=$(".nombre").map(function(index, element){
+var listado=$('.nombre').map(function(index, element){
     return element.innerText;
 });
 var s=true;
-console.log(listado);
+// console.log(listado);
 var ns = {
-    // canciones: ['AC DC - Highway To Hell (1979) - 03 - Walk All Over You.mp3', 'cancion2.mp3'],
     activa: 0,
     pause : function(){
         if(s)
         {
-            $("#player").trigger('pause');
+            $('#player').trigger('pause');
             s=false;
         }
         else {
-            $("#player").trigger('play');
+            $('#player').trigger('play');
             s=true;
         }
     },
     play : function(){
         $('#player').attr('src', 'assets/audio/' + listado[ns.activa] + '?rand=' + Math.random());
         $('#player').trigger('play');
-        $("#pistaActual").text(" " +  listado[ns.activa]);
+        $('#pistaActual').text(' '  +  listado[ns.activa]);
     },
     previous : function(){
         ns.activa=parseInt(ns.activa)-1;
@@ -31,7 +30,7 @@ var ns = {
     },
     next : function(){
         ns.activa=parseInt(ns.activa)+1;
-        console.log("assets/audio/"+listado[ns.activa]);
+        console.log('assets/audio/'+listado[ns.activa]);
         if (ns.activa===listado.length){
             ns.activa=0;
         }
@@ -55,54 +54,62 @@ var ns = {
         //     obj.pause();
         //     obj.currentTime=0;
         // });
-
         // $('#player').trigger('stop');
     },
     mute: function(){
-        if( $("#player").prop('muted') )
+        if( $('#player').prop('muted') )
         {
-            $("#player").prop('muted', false);
+            $('#player').prop('muted', false);
         }
         else {
-        $("#player").prop('muted', true);
+        $('#player').prop('muted', true);
         }
-        $("#btnMute>i").toggleClass("fas fa-volume-up");
-        $("#btnMute>i").toggleClass("fas fa-volume-mute");
+        var enchufe=$('#btnMute>i');
+        enchufe.toggleClass('fas fa-volume-up');
+        enchufe.toggleClass('fas fa-volume-mute');
     },
-    recargarCanciones(){
-        /*canciones=[];
-        $('#claseCancion').forEach(function(obj){
-            array_push(obj.getAttribute('ruta'));
-        }*/
-    }
+    cambiaVol: function(){
+        $('#player').prop('volume', $('.volume').val()/100);
+    },
+    tiempo: function(){
+        $('#player').prop('currentTime', $('.trackslider').val());
+        console.log($('.trackslider').val())/100;
+    },
 };
-
 $(document).ready(function(){
+    $('#myAudio').on('ended', function() {
+        ns.next();
+        // enable button/link
+    });
     $('.playcancion').on('click', function(){
         ns.especifica($(this).attr('cancion'));
     });
-    $('#player').on('ended', function(){
-        ns.next();
-    });
-    $('#btnPrevious').on('click', function(){
+    $('#btnPrevious').click(function () {
         ns.previous();
     });
-    $('#btnPause').on('click', function(){
+    $('#btnPause').click(function () {
         ns.pause();
     });
-    $('#btnPlay').on('click', function(){
+    $('#btnPlay').click(function () {
         ns.play();
     });
-    $('#btnNext').on('click', function(){
+    $('#btnNext').click(function () {
         ns.next();
     });
-    $('#btnStop').on('click', function(){
+    $('#btnStop').click(function () {
         ns.stop();
     });
-    $('#btnMute').on('click', function(){
+    $('#btnMute').click(function () {
         ns.mute();
     });
-    $('.btn-song').on('click', function(){
-        ns.goTo(this);
+    $('.volume').change(function () {
+        ns.cambiaVol();
     });
+    $('.trackslider').change(function () {
+        ns.tiempo();
+        // console.log($('.trackslider').val());
+    });
+    $('#player').bind('timeupdate', function () {
+        $('.trackslider').val($('#player').prop('currentTime'));
+    })
 });
