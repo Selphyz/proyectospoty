@@ -43,16 +43,11 @@ class Usuarios implements UserInterface
     /**
      * @var string|null
      *
-     * @ORM\Column(name="password", type="string", length=70, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="password", type="string")
      */
     private $password;
 
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="rol", type="string", length=70, nullable=true, options={"default"="NULL"})
-     */
-    private $rol;
+    
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -123,17 +118,7 @@ class Usuarios implements UserInterface
         
     }
 
-    public function getRol(): ?string
-    {
-        return $this->rol;
-    }
-
-    public function setRol(?string $rol): self
-    {
-        $this->rol = $rol;
-
-        return $this;
-    }
+    
 
     /**
      * @return Collection|Canciones[]
