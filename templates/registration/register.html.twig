@@ -21,7 +21,7 @@ body{
 	width: 450px;
 	margin: 50px auto;
     border: 1px solid #ECE8E8;
-	height: 400px;
+	height: 350px;
 	border-radius:8px;
 	padding: 0px 9px 0px 9px;
 	opacity: 0.75;
@@ -30,7 +30,7 @@ body{
 
 
 .Icon span{
-	  background: #A8A6A6;
+	  
       padding: 10px;
       border-radius: 80px;
 }
@@ -42,7 +42,7 @@ body{
      text-align: center;
 }
 
-.opcioncontra{
+#opcioncontraseña{
 	text-align: center;
 	margin-top: 20px;
 	font-size: 14px;
@@ -62,18 +62,22 @@ body{
 		 		<div class="input-group input-group-lg">
 				  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 				  {{ form_widget(registrationForm.username, {'attr' : {"class": "form-control", "placeholder": "Nombre de usuario" }}) }}
+				  {{ form_errors(registrationForm.username) }}
                 </div>
                 <br>
                 
 				<div class="input-group input-group-lg">
 				  <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
 				  {{ form_widget(registrationForm.plainPassword, {'attr' : {"class": "form-control", "placeholder": "Contraseña" } }) }}
+		 	      {{ form_errors(registrationForm.plainPassword) }}
 					</div>
                 <br>
+
+				
                 
 				<button class="btn btn-lg btn-primary btn-block btn-signin" id="IngresoLog" type="submit">Crear cuenta</button>
 				
-				<div class="opcioncontra"><a href="/proyectospoty/public/plogin.php">¿Ya tienes cuenta? Inicia sesión aqui</a></div>
+				<div id="opcioncontraseña" class="opcioncontra"><a href="/login">¿Ya tienes cuenta? Inicia sesión aqui</a></div>
 		 	{{ form_end(registrationForm) }}
 		 </div>	
 		 </div>
@@ -82,15 +86,3 @@ body{
 {% endblock %}
 
 
-<!--
-
-<div class="input-group input-group-lg">
-				  <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-				  <input type="password" style="height:46px;" class="form-control" name="contraseña" placeholder="******" id="Correo" required>
-                </div>
-                <br>
-				CONFIRMAR CONTRASEÑA
-
-				https://rojas.io/symfony-4-login-registration-system/
-				
-				-->

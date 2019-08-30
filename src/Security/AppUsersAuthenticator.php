@@ -3,35 +3,41 @@
 namespace App\Security;
 
 use App\Entity\Usuarios;
+use Psr\Log\LoggerInterface;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
-use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
 use Symfony\Component\Security\Core\Security;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Csrf\CsrfToken;
-use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
-use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
+use Symfony\Component\Security\Core\User\UserProviderInterface;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
+use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 
-class AppUsersAuthenticator extends AbstractFormLoginAuthenticator 
-
+class AppUsersAuthenticator extends AbstractFormLoginAuthenticator
 {
     use TargetPathTrait;
 
     private $entityManager;
     private $urlGenerator;
     private $csrfTokenManager;
+    private $passwordEncoder;
+    private $log;
 
-    public function __construct(EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrfTokenManager)
+    public function __construct(EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrfTokenManager, 
+                UserPasswordEncoderInterface $passwordEncoder, LoggerInterface $log)
     {
         $this->entityManager = $entityManager;
         $this->urlGenerator = $urlGenerator;
         $this->csrfTokenManager = $csrfTokenManager;
+        $this->passwordEncoder = $passwordEncoder;
+        $this->log=$log;
     }
 
     public function supports(Request $request)
@@ -64,20 +70,24 @@ class AppUsersAuthenticator extends AbstractFormLoginAuthenticator
 
         $user = $this->entityManager->getRepository(Usuarios::class)->findOneBy(['username' => $credentials['username']]);
 
+
         if (!$user) {
+            $this->log->debug("Usuario no encontrado");
             // fail authentication with a custom error
             throw new CustomUserMessageAuthenticationException('Username could not be found.');
         }
+
+        $this->log->debug("Usuario encontrado");
 
         return $user;
     }
 
     public function checkCredentials($credentials, UserInterface $user)
     {
-        // Check the user's password or other credentials and return true or false
-        // If there are no credentials to check, you can just return true
-       
-        return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
+        $this->log->debug("Enviado :" . $credentials['password'] );
+        $res= $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
+        $this->log->debug("Validado :" . $res );
+        return $res;
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
@@ -87,8 +97,7 @@ class AppUsersAuthenticator extends AbstractFormLoginAuthenticator
         }
 
         // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
-        return new RedirectResponse($this->urlGenerator->generate('loginOk'));
+        return new RedirectResponse($this->urlGenerator->generate('musica'));
     }
 
     protected function getLoginUrl()
