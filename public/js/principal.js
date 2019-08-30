@@ -49,7 +49,6 @@ var ns = {
     //     ns.play();
     // },
     stop: function(){
-<<<<<<< HEAD
         $('#player').trigger('pause');
         $('#player').attr('src', '');
         // $('#player').foreach(function(obj){
@@ -69,10 +68,6 @@ var ns = {
         }
         $("#btnMute>i").toggleClass("fas fa-volume-up");
         $("#btnMute>i").toggleClass("fas fa-volume-mute");
-=======
-        $('#player').trigger('stop');
-        $("#pistaActual").text("");
->>>>>>> master
     },
     recargarCanciones(){
         /*canciones=[];
