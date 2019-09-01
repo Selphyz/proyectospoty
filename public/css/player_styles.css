@@ -1,51 +1,57 @@
-#cola, #result, #listas{
-  position: relative;
-  overflow-y: auto;
-  height: inherit;
+#cola, #result, #listas {
+    position: relative;
+    overflow-y: auto;
+    height: inherit;
 }
 
 /*Alturas*/
 #superior {
-  height: 10vh;
+    height: 10vh;
 }
 
 #inferior {
-  height: 20vh;
+    height: 20vh;
 }
 
 #central {
-  height: 70vh;
+    height: 70vh;
 }
+
 .slidecontainer {
-  width: 100%;
+    width: 100%;
 }
+
 .trackslider {
-  -webkit-appearance: media-seek-back-button;
-  height: 5px;
-  background: rgba(183, 241, 255, 0.95);
-  outline: none;
-  opacity: 0.7;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
-  border-radius: 4px;
-  width: 34vw;
-  margin-top: 5px;
+    -webkit-appearance: media-seek-back-button;
+    height: 8px;
+    background: rgba(183, 241, 255, 0.95);
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    border-radius: 4px;
+    width: 34vw;
+    margin-top: 5px;
 }
+
 .trackslider:hover {
-  opacity: 1;
+    opacity: 1;
 }
+
 .trackslider::-webkit-slider-thumb {
-  width: 10px;
-  height: 10px;
-  background: rgb(101, 197, 255);
-  cursor: pointer;
+    width: 12px;
+    height: 12px;
+    background: rgb(101, 197, 255);
+    cursor: pointer;
 }
+
 .trackslider::-moz-range-thumb {
-  width: 10px;
-  height: 10px;
-  background: rgb(101, 197, 255);
-  cursor: pointer;
+    width: 12px;
+    height: 12px;
+    background: rgb(101, 197, 255);
+    cursor: pointer;
 }
+
 .volume {
     -webkit-appearance: media-seek-back-button;
     height: 5px;
@@ -58,15 +64,18 @@
     width: 14vw;
     margin-top: 5px;
 }
+
 .volume:hover {
     opacity: 1;
 }
+
 .volume::-webkit-slider-thumb {
     width: 10px;
     height: 10px;
     background: rgb(101, 197, 255);
     cursor: pointer;
 }
+
 .volume::-moz-range-thumb {
     width: 10px;
     height: 10px;

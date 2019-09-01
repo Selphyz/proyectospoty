@@ -1,0 +1,30 @@
+body{
+    font-size: 12px;
+    background-image: url("https://www.lacupulamusic.com/assets/img/home2.jpg");
+    background-size: cover;
+}
+#Contenedor{
+    width: 450px;
+    margin: 50px auto;
+    border: 1px solid #ECE8E8;
+    height: 350px;
+    border-radius:8px;
+    padding: 0px 9px 0px 9px;
+    opacity: 0.75;
+    background-color:black;
+}
+.Icon span{
+    padding: 10px;
+    border-radius: 80px;
+}
+.Icon{
+    margin-top: 10px;
+    margin-bottom:10px;
+    font-size: 50px;
+    text-align: center;
+}
+#opcioncontraseña{
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+}

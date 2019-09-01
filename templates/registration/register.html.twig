@@ -1,60 +1,12 @@
 
 {% block stylesheets %}
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-
+<link href="/css/register.css" rel="stylesheet">
 {% endblock %}
 
-
 {% block body %}
-
-<style>
-    
-
-body{
-	font-size: 12px;
- 	background-image: url("https://www.lacupulamusic.com/assets/img/home2.jpg");
-	 background-size: cover;
-}
-
-
-#Contenedor{
-	width: 450px;
-	margin: 50px auto;
-    border: 1px solid #ECE8E8;
-	height: 350px;
-	border-radius:8px;
-	padding: 0px 9px 0px 9px;
-	opacity: 0.75;
-	background-color:black;
-}
-
-
-.Icon span{
-	  
-      padding: 10px;
-      border-radius: 80px;
-}
-
-.Icon{
-     margin-top: 10px;
-     margin-bottom:10px; 
-     font-size: 50px;
-     text-align: center;
-}
-
-#opcioncontraseña{
-	text-align: center;
-	margin-top: 20px;
-	font-size: 14px;
-}
-
-</style>
-   
-
-    
 <div id="Contenedor">
 		 <div class="Icon">
-                    
                    <span><i class="glyphicon glyphicon-user"></i></span>
          </div>
 <div class="ContentForm">
@@ -65,7 +17,7 @@ body{
 				  {{ form_errors(registrationForm.username) }}
                 </div>
                 <br>
-                
+
 				<div class="input-group input-group-lg">
 				  <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
 				  {{ form_widget(registrationForm.plainPassword, {'attr' : {"class": "form-control", "placeholder": "Contraseña" } }) }}
@@ -73,10 +25,7 @@ body{
 					</div>
                 <br>
 
-				
-                
 				<button class="btn btn-lg btn-primary btn-block btn-signin" id="IngresoLog" type="submit">Crear cuenta</button>
-				
 				<div id="opcioncontraseña" class="opcioncontra"><a href="/login">¿Ya tienes cuenta? Inicia sesión aqui</a></div>
 		 	{{ form_end(registrationForm) }}
 		 </div>	

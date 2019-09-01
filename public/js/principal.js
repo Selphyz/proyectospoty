@@ -70,14 +70,18 @@ var ns = {
     },
     cambiaVol: function(){
         $('#player').prop('volume', $('.volume').val()/100);
+        console.log($('.trackslider').val()/100);
     },
     tiempo: function(){
-        $('#player').prop('currentTime', $('.trackslider').val());
-        console.log($('.trackslider').val())/100;
+        var track=parseInt($('.trackslider').val());
+        var duration=parseInt($('#player').prop('duration'));
+        var salida=100/duration;
+        $('#player').prop('currentTime', track/salida);
     },
 };
 $(document).ready(function(){
-    $('#myAudio').on('ended', function() {
+    let player=$('#player');
+    player.on('ended', function() {
         ns.next();
         // enable button/link
     });
@@ -109,7 +113,9 @@ $(document).ready(function(){
         ns.tiempo();
         // console.log($('.trackslider').val());
     });
-    $('#player').bind('timeupdate', function () {
-        $('.trackslider').val($('#player').prop('currentTime'));
+    player.bind('timeupdate', function () {
+        var ahora=$('#player').prop('currentTime');
+        var duration=$('#player').prop('duration');
+        $('.trackslider').val((ahora/duration)*100);
     })
 });
