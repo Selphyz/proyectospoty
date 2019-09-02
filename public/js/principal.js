@@ -1,3 +1,4 @@
+
 var listado=$('.nombre').map(function(index, element){
     return element.innerText;
 });
@@ -20,6 +21,29 @@ var ns = {
         $('#player').attr('src', 'assets/audio/' + listado[ns.activa] + '?rand=' + Math.random());
         $('#player').trigger('play');
         $('#pistaActual').text(' '  +  listado[ns.activa]);
+        //Prueba con dataView
+        // listado[ns.activa].onchange = function(e) {
+        //     var reader = new FileReader();
+        //     console.log ("entra");
+        //     reader.onload = function(e) {
+        //       var dv = new jDataView(this.result);
+            
+        //       // "TAG" starts at byte -128 from EOF.
+        //       // See <a href="http://en.wikipedia.org/wiki/ID3" target="_blank">http://en.wikipedia.org/wiki/ID3</a>
+        //       if (dv.getString(3, dv.byteLength - 128) == 'TAG') {
+        //         var title = dv.getString(30, dv.tell());
+        //         var artist = dv.getString(30, dv.tell());
+        //         var album = dv.getString(30, dv.tell());
+        //         var year = dv.getString(4, dv.tell());
+        //         alert(title);
+        //       } else {
+        //         // no ID3v1 data found.
+        //       }
+        //     };
+            
+        //     reader.readAsArrayBuffer(this.files[0]);
+        //     };
+        //fin Prueba
     },
     previous : function(){
         ns.activa=parseInt(ns.activa)-1;
