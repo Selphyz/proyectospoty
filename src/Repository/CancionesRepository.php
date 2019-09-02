@@ -59,6 +59,15 @@ class CancionesRepository extends ServiceEntityRepository
         return $canciones;
     }
 
+    public function listaCanciones(){
+        $dql="select c from App\Entity\Listas c";
+        $em=$this->getEntityManager();
+        $query=$em->createQuery($dql);
+        return $query->execute();
+           
+    }
+    
+
     // /**
     //  * @return Canciones[] Returns an array of Canciones objects
     //  */
