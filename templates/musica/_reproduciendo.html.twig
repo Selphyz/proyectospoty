@@ -1,22 +1,29 @@
-
-<h4>Reproduciendo</h4>
-
-<audio id='player' src='cancion1.mp3'></audio>
+<audio id='player' src=''></audio>
 <div class="container-fluid">
-<div class="row d-flex justify-content-center">
-    <div id="titulo">
+    <div class="row d-flex justify-content-center">
+        <div id="titulo" class="col-12">
+            <h4>Reproduciendo<span id="pistaActual"></span></h4>
+        </div>
+        <div id="botones">
+            <button id='btnPrevious' class="btn btn-primary d-inline-flex" type='button' value='Next'>
+                <i class="fas fa-step-backward"></i></button>
+            <button id='btnPause' class="btn btn-primary d-inline-flex" type='button' value='Pause'>
+                <i class="fas fa-pause"></i></button>
+            <button id='btnPlay' class="btn btn-primary d-inline-flex" type='button' value='Play'>
+                <i class="fas fa-play"></i></button>
+            <button id='btnNext' class="btn btn-primary d-inline-flex" type='button' value='Previous'>
+                <i class="fas fa-step-forward"></i></button>
+            <button id='btnStop' class="btn btn-primary d-inline-flex" type='button' value='Stop'>
+                <i class="fas fa-stop"></i>
+            </button>
+            <button id='btnMute' class="btn btn-primary d-inline-flex" type='button' value='Pause'>
+                <i class="fas fa-volume-up"></i></button>
+            <input class="volume" type="range" name="" min="0" max="100" value="100" step="1">
+        </div>
     </div>
-    <div id="botones">
-        <button id='btnPrevious' class="btn btn-primary d-inline-flex" type='button' value='Next'>
-            <i class="fas fa-step-backward"></i></button>
-        <button id='btnPlay' class="btn btn-primary d-inline-flex" type='button' value='Play'>
-            <i class="fas fa-play"></i></button>
-        <button id='btnNext' class="btn btn-primary d-inline-flex" type='button' value='Previous'>
-            <i class="fas fa-step-forward"></i></button>
-        <button id='btnStop' class="btn btn-primary d-inline-flex" type='button' value='Stop'>
-            <i class="fas fa-stop"></i></button>
+    <div class="slidecontainer row d-flex justify-content-center">
+        <input class="trackslider m-3" type="range" name="" min="0" max="100" value="0" step="1">
     </div>
-</div>
 </div>
 {#<br/>
 <input class='btn-song' type='button' numeroCancion='0' value='Cancion 1'/>

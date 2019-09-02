@@ -21,4 +21,8 @@ $(document).ready(function(){
         $(this).removeClass("bg-default");
         $(this).addClass("bg-primary");
     });
+
+    $(".fa-play-circle").mouseover(function(){
+        $(this).css('cursor', 'pointer');
+    })
 });
