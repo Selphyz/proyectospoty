@@ -17,9 +17,15 @@ class MusicaController extends AbstractController
     {
         $repo=$this->getDoctrine()->getRepository(Canciones::class);
         $canciones=$repo->colaCanciones();
+        $listaReproduccion=array();
+        $user=$this->getUser();
+        if ($user){
+            $listaReproduccion=$repo->listaCanciones(); //Llamada
+        }
         return $this->render('musica/index.html.twig', [
             'controller_name' => 'MusicaController',
-            'canciones'=>$canciones
+            'canciones'=>$canciones,
+            'listaReproduccion'=>$listaReproduccion
         ]);
     }
 
