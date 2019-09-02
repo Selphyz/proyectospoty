@@ -42,12 +42,14 @@ class AppUsersAuthenticator extends AbstractFormLoginAuthenticator
 
     public function supports(Request $request)
     {
+
         return 'app_login' === $request->attributes->get('_route')
             && $request->isMethod('POST');
     }
 
     public function getCredentials(Request $request)
     {
+
         $credentials = [
             'username' => $request->request->get('username'),
             'password' => $request->request->get('password'),
@@ -63,6 +65,7 @@ class AppUsersAuthenticator extends AbstractFormLoginAuthenticator
 
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
+
         $token = new CsrfToken('authenticate', $credentials['csrf_token']);
         if (!$this->csrfTokenManager->isTokenValid($token)) {
             throw new InvalidCsrfTokenException();
@@ -72,26 +75,24 @@ class AppUsersAuthenticator extends AbstractFormLoginAuthenticator
 
 
         if (!$user) {
-            $this->log->debug("Usuario no encontrado");
+            
             // fail authentication with a custom error
             throw new CustomUserMessageAuthenticationException('Username could not be found.');
         }
 
-        $this->log->debug("Usuario encontrado");
-
+       
         return $user;
     }
 
     public function checkCredentials($credentials, UserInterface $user)
     {
-        $this->log->debug("Enviado :" . $credentials['password'] );
         $res= $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
-        $this->log->debug("Validado :" . $res );
         return $res;
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
+
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
         }

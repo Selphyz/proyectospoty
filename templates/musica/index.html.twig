@@ -10,9 +10,10 @@
     <div id="superior" class='row col-12'>
         <div class='col-12'>
             {{ include('musica/_busqueda.html.twig') }}
-            {% if (app.user!=null ) %}
+           {#} {% if (app.user!=null ) %}
                 {{ app.user.username }}
-            {% endif %}
+            {% endif %}#}
+            
         </div>
     </div>
 
