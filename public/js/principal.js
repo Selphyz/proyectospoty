@@ -1,8 +1,12 @@
 var listado=$('.nombre').map(function(index, element){
     return element.innerText;
 });
-var s=true;
+// ID3.loadTags("./../assets/audio/antecamara.mp3", function() {
+//     var tags = ID3.getAllTags(filename);
+//     console.log(tags.artist + " - " + tags.title + ", " + tags.album);
+// });
 // console.log(listado);
+var s=true;
 var ns = {
     activa: 0,
     pause : function(){
@@ -69,15 +73,28 @@ var ns = {
         enchufe.toggleClass('fas fa-volume-mute');
     },
     cambiaVol: function(){
-        $('#player').prop('volume', $('.volume').val()/100);
-        console.log($('.trackslider').val()/100);
+        $('#player').each(function(){
+            $('#player').prop('volume', $('.volume').val()/100);
+            console.log($('.volume').val()/100);
+        });
     },
     tiempo: function(){
-        var track=parseInt($('.trackslider').val());
-        var duration=parseInt($('#player').prop('duration'));
-        var salida=100/duration;
-        $('#player').prop('currentTime', track/salida);
+        $('#player').each(function(){
+            var track=parseInt($('.trackslider').val());
+            var duration=parseInt($('#player').prop('duration'));
+            var salida=100/duration;
+            $('#player').prop('currentTime', track/salida);
+            console.log(track/salida);
+        });
     },
+    iniciarColaReproduccion: function(){
+        $('#ColaReproduccion').bootstrapTable({
+            url: '/jsonListaMusica',
+            sidePagination: 'server',
+            pagination: true,
+            search: true,
+        });
+    }
 };
 $(document).ready(function(){
     let player=$('#player');
@@ -113,6 +130,14 @@ $(document).ready(function(){
         ns.tiempo();
         // console.log($('.trackslider').val());
     });
+    $('.volume').on('input propertychange', function () {
+        ns.cambiaVol();
+    });
+    $('.trackslider').on('input propertychange', function () {
+        ns.tiempo();
+        // console.log($('.trackslider').val());
+    });
+    ns.iniciarColaReproduccion();
     player.bind('timeupdate', function () {
         var ahora=$('#player').prop('currentTime');
         var duration=$('#player').prop('duration');
