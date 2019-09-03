@@ -11,7 +11,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * Listas
  *
  * @ORM\Table(name="listas", indexes={@ORM\Index(name="usuario_lista", columns={"id_usuario"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\ListasRepository")
  */
 class Listas
 {

@@ -1,11 +1,7 @@
 var listado=$('.nombre').map(function(index, element){
     return element.innerText;
 });
-// ID3.loadTags("./../assets/audio/antecamara.mp3", function() {
-//     var tags = ID3.getAllTags(filename);
-//     console.log(tags.artist + " - " + tags.title + ", " + tags.album);
-// });
-// console.log(listado);
+
 var s=true;
 var ns = {
     activa: 0,
@@ -94,7 +90,33 @@ var ns = {
             pagination: true,
             search: true,
         });
-    }
+    },
+
+    listaNueva: function(){
+        valor=prompt("Introduce el nombre de la lista");
+        $.ajax({
+            url: '/listaNueva/' + encodeUrl(valor),
+            success: function(data){
+                alert(data);
+            }
+        })
+    },
+
+    listaAddCancion: function(idCancion){
+        idLista=$('#listaSel').val();
+        if (idLista>0){
+            $.ajax({
+                url: '/listaAddCancion/' + encodeUrl(idCancion) + '/' + encodeUrl(idLista),
+                success: function(data){
+                    alert(data);
+                }
+            })
+    
+        }
+    },
+
+
+
 };
 $(document).ready(function(){
     let player=$('#player');
