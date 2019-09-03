@@ -36,6 +36,18 @@ class CancionesRepository extends ServiceEntityRepository
         return $canciones;        
     }
 
+    //Limit
+    public function colaCancionesTabla($offset, $limit, $search){
+        $dql="select c from App\Entity\Canciones c where c.url like :search";
+        $em=$this->getEntityManager();
+        $query=$em->createQuery($dql)
+                  ->setParameter('search', '%' . $search . '%')
+                  ->setFirstResult($offset) // Offset
+                  ->setMaxResults($limit);        
+        $canciones=$query->execute();
+        return $canciones;        
+    }    
+
     public function buscarCanciones(String $texto){
         $dql="select c from App\Entity\Canciones c where c.url like :texto";
         $em=$this->getEntityManager();
@@ -46,6 +58,15 @@ class CancionesRepository extends ServiceEntityRepository
         $canciones=$query->execute();
         return $canciones;
     }
+
+    public function listaCanciones(){
+        $dql="select c from App\Entity\Listas c";
+        $em=$this->getEntityManager();
+        $query=$em->createQuery($dql);
+        return $query->execute();
+           
+    }
+    
 
     // /**
     //  * @return Canciones[] Returns an array of Canciones objects

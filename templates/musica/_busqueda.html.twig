@@ -1,8 +1,11 @@
 <form>
     <div class="container-fluid m-2">
         <div class="row">
-            <div id="boton" class="col-4">
+            <div id="botonBiblioteca" class="col-4">
                 {# Botón para acceder a la biblioteca #}
+                
+                    <a class="navbar-brand" href="#">Biblioteca<i class="fa fa-folder" style="color:#FFFFFF;"></i></a>
+               
             </div>
             <div id="busqueda" class="col-4">
                 {# Cuadro de búsqueda y botón #}
@@ -16,7 +19,15 @@
                 </div>
             </div>
             <div id="usuario" class="col-4">
+            
                 {# Cuenta del usuario #}
+
+                
+               {# {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %} #}
             </div>
         </div>
     </div>

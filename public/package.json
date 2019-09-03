@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^4.3.1",
+    "bootstrap-table": "^1.15.4",
     "bootswatch": "^4.3.1",
     "howler": "^2.1.2",
     "jquery": "^3.4.1",

@@ -2,7 +2,11 @@
 
 {% block stylesheets %}
 <link rel="stylesheet" href="./css/player_styles.css">
+<<<<<<< HEAD
 
+=======
+<link rel="stylesheet" href="./node_modules/bootstrap-table/dist/bootstrap-table.css">
+>>>>>>> 64044b57519fcb82730479543dd099c59d4187f4
 {% endblock %}
 
 {% block body %}
@@ -11,9 +15,10 @@
     <div id="superior" class='row col-12'>
         <div class='col-12'>
             {{ include('musica/_busqueda.html.twig') }}
-            {% if (app.user!=null ) %}
+           {#} {% if (app.user!=null ) %}
                 {{ app.user.username }}
-            {% endif %}
+            {% endif %}#}
+            
         </div>
     </div>
 
@@ -41,11 +46,19 @@
     </div>
 </div>
 
+
 {% endblock %}
 
 {% block javascripts %}
+<<<<<<< HEAD
     <script type="text/javascript" src="js/howler.core.js"></script>
     <script type="text/javascript" src="js/cola_repr.js"></script>
     <script type="text/javascript" src="js/principal.js"></script>
 
+=======
+  <script type="text/javascript" src="js/howler.core.js"></script>
+  <script type="text/javascript" src="js/cola_repr.js"></script>
+  <script type="text/javascript" src="./node_modules/bootstrap-table/dist/bootstrap-table.js"></script>
+  <script type="text/javascript" src="js/principal.js"></script>
+>>>>>>> 64044b57519fcb82730479543dd099c59d4187f4
 {% endblock %}

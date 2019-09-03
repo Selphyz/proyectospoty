@@ -1,1 +1,12 @@
 <h4>Listas de reproducción</h4>
+
+{% for cancion in listaReproduccion %}
+
+    <div class="informacion">
+            <span class="nombre" name="titulo">{{ cancion.url }}</span>
+    </div>
+    
+{% else %}
+    No hay elementos</br>
+    <a href="">Crear una nueva lista</a><i align="right" class="fas fa-plus px-1"></i>
+{% endfor %}
