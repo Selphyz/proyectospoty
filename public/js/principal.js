@@ -87,12 +87,21 @@ var ns = {
             console.log(track/salida);
         });
     },
+    formatearColumna: function(id, row, index){
+        return "<a class='playcancion' cancion='" + index + "'> "+ 
+                    " <i class='fas fa-play-circle' 'style='cursor: pointer;'></i> " +
+                "</a>";         
+    },
     iniciarColaReproduccion: function(){
         $('#ColaReproduccion').bootstrapTable({
             url: '/jsonListaMusica',
             sidePagination: 'server',
             pagination: true,
             search: true,
+            pageSize: 5,
+            searchAlign:'left', 
+            showFooter: false,
+            //onlyInfoPagination: true
         });
     }
 };

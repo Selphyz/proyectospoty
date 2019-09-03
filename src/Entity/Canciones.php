@@ -26,9 +26,30 @@ class Canciones
     /**
      * @var string|null
      *
-     * @ORM\Column(name="url", type="string", length=100, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="url", type="string", length=100, nullable=true)
      */
     private $url;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="album", type="string", length=50, nullable=true)
+     */
+    private $album;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="compositor", type="string", length=50, nullable=true)
+     */
+    private $compositor;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="titulo", type="string", length=50, nullable=true)
+     */
+    private $titulo;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -74,6 +95,42 @@ class Canciones
     public function setUrl(?string $url): self
     {
         $this->url = $url;
+
+        return $this;
+    }
+
+    public function getAlbum(): ?string
+    {
+        return $this->album;
+    }
+
+    public function setAlbum(?string $album): self
+    {
+        $this->album = $album;
+
+        return $this;
+    }
+
+    public function getCompositor(): ?string
+    {
+        return $this->compositor;
+    }
+
+    public function setCompositor(?string $compositor): self
+    {
+        $this->compositor = $compositor;
+
+        return $this;
+    }
+
+    public function getTitulo(): ?string
+    {
+        return $this->titulo;
+    }
+
+    public function setTitulo(?string $titulo): self
+    {
+        $this->titulo = $titulo;
 
         return $this;
     }
