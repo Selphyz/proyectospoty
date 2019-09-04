@@ -14,11 +14,6 @@
     "bootswatch": "^4.3.1",
     "howler": "^2.1.2",
     "jquery": "^3.4.1",
-    "jsmediatags": "^3.9.2",
-    "popper.js": "^1.15.0",
-    "read-id3-tags": "^1.1.0"
-  },
-  "devDependencies": {
-    "eslint": "^6.3.0"
+    "popper.js": "^1.15.0"
   }
 }
