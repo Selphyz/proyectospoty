@@ -82,5 +82,11 @@
     background: rgb(101, 197, 255);
     cursor: pointer;
 }
+td:nth-of-type(2){
+    display: none;
+}
+th:nth-of-type(2){
+    display: none;
+}
 
 
