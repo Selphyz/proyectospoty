@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Listas;
+use App\Entity\ListasCanciones;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method Listas|null find($id, $lockMode = null, $lockVersion = null)
- * @method Listas|null findOneBy(array $criteria, array $orderBy = null)
- * @method Listas[]    findAll()
- * @method Listas[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method ListasCanciones|null find($id, $lockMode = null, $lockVersion = null)
+ * @method ListasCanciones|null findOneBy(array $criteria, array $orderBy = null)
+ * @method ListasCanciones[]    findAll()
+ * @method ListasCanciones[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ListasRepository extends ServiceEntityRepository
+class ListasCancionesRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Listas::class);
+        parent::__construct($registry, ListasCanciones::class);
     }
 
     // /**
-    //  * @return Listas[] Returns an array of Listas objects
+    //  * @return ListasCanciones[] Returns an array of ListasCanciones objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class ListasRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Listas
+    public function findOneBySomeField($value): ?ListasCanciones
     {
         return $this->createQueryBuilder('l')
             ->andWhere('l.exampleField = :val')

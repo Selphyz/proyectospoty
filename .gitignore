@@ -21,3 +21,4 @@
 /public/node_modules/*
 /public/assets
 .idea/
+node_modules
