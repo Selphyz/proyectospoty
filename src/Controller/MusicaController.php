@@ -17,9 +17,8 @@ class MusicaController extends AbstractController
     /**
      * @Route("/musica", name="musica")
      */
-    public function index()
+    public function index(CancionesRepository $repo)
     {
-        $repo=$this->getDoctrine()->getRepository(Canciones::class);
         $canciones=$repo->colaCanciones();
         $listaReproduccion=array();
         $user=$this->getUser();
@@ -66,6 +65,12 @@ class MusicaController extends AbstractController
 
         $repo=$this->getDoctrine()->getRepository(Canciones::class);
         $canciones=$repo->colaCancionesTabla($offset, $limit, $search);
+        $totalCanciones=$repo->totalCancionesTabla($search);
+
+        $res=[
+            'total'=>$totalCanciones,
+            'rows'=>$canciones
+        ];
 
         // Tip : Inject SerializerInterface $serializer in the controller method
         // and avoid these 3 lines of instanciation/configuration
@@ -74,7 +79,7 @@ class MusicaController extends AbstractController
         $serializer = new Serializer($normalizers, $encoders);
 
         // Serialize your object in Json
-        $jsonObject = $serializer->serialize($canciones, 'json', [
+        $jsonObject = $serializer->serialize($res, 'json', [
             'circular_reference_handler' => function ($object) {
                 return $object->getId();
             }

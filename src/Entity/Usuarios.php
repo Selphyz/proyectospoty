@@ -2,22 +2,17 @@
 
 namespace App\Entity;
 
-use App\Entity\Canciones;
-use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Usuarios
  *
  * @ORM\Table(name="usuarios")
  * @ORM\Entity(repositoryClass="App\Repository\UsuariosRepository")
- * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
  */
-class Usuarios implements UserInterface
+class Usuarios
 {
     /**
      * @var int
@@ -31,23 +26,23 @@ class Usuarios implements UserInterface
     /**
      * @var string|null
      *
-     * @ORM\Column(name="usuario", type="string", length=70, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="usuario", type="string", length=256, nullable=true)
      */
-    private $username;
-
-    /**
-     * @ORM\Column(type="json")
-     */
-    private $roles = [];
+    private $usuario;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="password", type="string")
+     * @ORM\Column(name="password", type="string", length=256, nullable=true)
      */
     private $password;
 
-    
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="roles", type="string", length=256, nullable=true)
+     */
+    private $roles;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -69,33 +64,14 @@ class Usuarios implements UserInterface
         return $this->id;
     }
 
-    public function getUsername(): ?string
+    public function getUsuario(): ?string
     {
-        return $this->username;
+        return $this->usuario;
     }
 
-    public function setUsername(?string $username): self
+    public function setUsuario(?string $usuario): self
     {
-        $this->username = $username;
-
-        return $this;
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function getRoles(): array
-    {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-
-        return array_unique($roles);
-    }
-
-    public function setRoles(array $roles): self
-    {
-        $this->roles = $roles;
+        $this->usuario = $usuario;
 
         return $this;
     }
@@ -111,14 +87,18 @@ class Usuarios implements UserInterface
 
         return $this;
     }
-    public function getSalt(){
 
-    }
-    public function eraseCredentials(){
-        
+    public function getRoles(): ?string
+    {
+        return $this->roles;
     }
 
-    
+    public function setRoles(?string $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
 
     /**
      * @return Collection|Canciones[]

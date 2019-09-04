@@ -2,10 +2,9 @@
 
 namespace App\Entity;
 
-
-use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Listas
@@ -27,9 +26,9 @@ class Listas
     /**
      * @var string|null
      *
-     * @ORM\Column(name="nombre", type="string", length=25, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="nombre", type="string", length=25, nullable=true)
      */
-    private $nombre = 'NULL';
+    private $nombre;
 
     /**
      * @var \Usuarios

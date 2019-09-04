@@ -34,6 +34,7 @@ class CancionesRepository extends ServiceEntityRepository
         $query=$em->createQuery($dql);
         $canciones=$query->execute();
         return $canciones;        
+       // return array();
     }
 
     //Limit
@@ -47,6 +48,16 @@ class CancionesRepository extends ServiceEntityRepository
         $canciones=$query->execute();
         return $canciones;        
     }    
+
+    //Limit
+    public function totalCancionesTabla($search){
+        $dql="select count(c) total from App\Entity\Canciones c where c.url like :search";
+        $em=$this->getEntityManager();
+        $query=$em->createQuery($dql)
+                  ->setParameter('search', '%' . $search . '%');
+        $total=$query->execute()[0]['total'];
+        return $total;        
+    }      
 
     public function buscarCanciones(String $texto){
         $dql="select c from App\Entity\Canciones c where c.url like :texto";
