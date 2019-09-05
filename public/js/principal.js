@@ -100,13 +100,25 @@ var ns = {
             //onlyInfoPagination: true
         });
     },
+    iniciarListas: function(){
+        $('#tablaListas').bootstrapTable({
+            url: '/jsonListas', //como la de arriba, modificar
+            sidePagination: 'server',
+            pagination: true,
+            search: true,
+            pageSize: 5,
+            searchAlign:'left', 
+            showFooter: false,
+            //onlyInfoPagination: true
+        });
+    },    
 
     listaNueva: function(){
         valor=prompt("Introduce el nombre de la lista");
         $.ajax({
-            url: '/listaNueva/' + encodeUrl(valor),
+            url: '/listaNueva/' + encodeURI(valor),
             success: function(data){
-                alert(data);
+                $('#tablaListas').bootstrapTable('refresh');
             }
         })
     },
@@ -115,7 +127,7 @@ var ns = {
         idLista=$('#listaSel').val();
         if (idLista>0){
             $.ajax({
-                url: '/listaAddCancion/' + encodeUrl(idCancion) + '/' + encodeUrl(idLista),
+                url: '/listaAddCancion/' + encodeURI(idCancion) + '/' + encodeURI(idLista),
                 success: function(data){
                     alert(data);
                 }
@@ -153,6 +165,9 @@ $(document).ready(function(){
     });
     $('#btnMute').click(function () {
         ns.mute();
+    });
+    $('#btnCrearLista').click(function () {
+        ns.listaNueva();
     });
     $('.volume').change(function () {
         ns.cambiaVol();
