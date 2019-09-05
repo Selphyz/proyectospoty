@@ -113,10 +113,11 @@ var ns = {
             pageSize: 5,
             searchAlign:'left', 
             showFooter: false,
+            //onlyInfoPagination: true
             onLoadSuccess: function(){
                 ns.recargarLista();
                 console.log(listado);
-            },            //onlyInfoPagination: true
+            },
         });
     },
     //Carga las listas
@@ -144,17 +145,26 @@ var ns = {
     },
 
     //pendiente de modificar
-    borrarLista: function(){
-        prompt("¿Seguro que desea borrar esta lista?")
-        valor=//idLista;
-        $.ajax({
-            url: '/borrarLista/' + encodeURI(valor),
-            success: function(data){
-                //alert("Lista")
-                $('#tablaListas').bootstrapTable('refresh');
-            }
-        })
-    },    
+    // borrarLista: function(){
+    //     if(confirm("¿Seguro que desea borrar esta lista?")){
+    //         valor=//idLista;
+    //         $.ajax({
+    //             url: '/borrarLista/' + encodeURI(valor),
+    //             success: function(data){
+    //                 //alert("Lista borrada")
+    //                 $('#tablaListas').bootstrapTable('refresh');
+    //             }
+    //         })
+    //     }    
+    // },
+    
+    /*
+    if (confirm("Press a button!")) {
+        txt = "You pressed OK!";
+    } else {
+        txt = "You pressed Cancel!";
+    }
+    */
 
     listaAddCancion: function(idCancion){
         idLista=$("input[name='listaSel']:checked").val();
