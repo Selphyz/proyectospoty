@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Listas
  *
  * @ORM\Table(name="listas", indexes={@ORM\Index(name="usuario_lista", columns={"id_usuario"})})
- * @ORM\Entity(repositoryClass="App\Repository\ListasRepository")
+ * @ORM\Entity
  */
 class Listas
 {
@@ -56,11 +56,27 @@ class Listas
     private $idCancion;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Usuarios", inversedBy="lista")
+     * @ORM\JoinTable(name="listas_usuarios",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="lista_id", referencedColumnName="id_lista")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="usuarios_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $usuarios;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->idCancion = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->usuarios = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function getIdLista(): ?int
@@ -113,6 +129,32 @@ class Listas
     {
         if ($this->idCancion->contains($idCancion)) {
             $this->idCancion->removeElement($idCancion);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Usuarios[]
+     */
+    public function getUsuarios(): Collection
+    {
+        return $this->usuarios;
+    }
+
+    public function addUsuario(Usuarios $usuario): self
+    {
+        if (!$this->usuarios->contains($usuario)) {
+            $this->usuarios[] = $usuario;
+        }
+
+        return $this;
+    }
+
+    public function removeUsuario(Usuarios $usuario): self
+    {
+        if ($this->usuarios->contains($usuario)) {
+            $this->usuarios->removeElement($usuario);
         }
 
         return $this;
