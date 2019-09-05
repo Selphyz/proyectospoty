@@ -139,6 +139,7 @@ var ns = {
 
 
 };
+
 $(document).ready(function(){
     let player=$('#player');
     player.on('ended', function() {
@@ -183,6 +184,10 @@ $(document).ready(function(){
         ns.tiempo();
         // console.log($('.trackslider').val());
     });
+    $('#btnRecargar').click(function () {
+        ns.iniciarListas();
+    });
+    
     ns.iniciarColaReproduccion();
     player.bind('timeupdate', function () {
         var ahora=$('#player').prop('currentTime');
