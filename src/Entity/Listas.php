@@ -9,8 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Listas
  *
- * @ORM\Table(name="listas", indexes={@ORM\Index(name="usuario_lista", columns={"id_usuario"})})
- * @ORM\Entity
+ * @ORM\Table(name="listas")
+ * @ORM\Entity(repositoryClass="App\Repository\ListasRepository")
  */
 class Listas
 {
@@ -26,19 +26,9 @@ class Listas
     /**
      * @var string|null
      *
-     * @ORM\Column(name="nombre", type="string", length=25, nullable=true)
+     * @ORM\Column(name="nombre", type="string", length=25, nullable=true, options={"default"="NULL"})
      */
-    private $nombre;
-
-    /**
-     * @var \Usuarios
-     *
-     * @ORM\ManyToOne(targetEntity="Usuarios")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_usuario", referencedColumnName="id")
-     * })
-     */
-    private $idUsuario;
+    private $nombre = 'NULL';
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -58,17 +48,17 @@ class Listas
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Usuarios", inversedBy="lista")
+     * @ORM\ManyToMany(targetEntity="Canciones", inversedBy="lista")
      * @ORM\JoinTable(name="listas_usuarios",
      *   joinColumns={
      *     @ORM\JoinColumn(name="lista_id", referencedColumnName="id_lista")
      *   },
      *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="usuarios_id", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
      *   }
      * )
      */
-    private $usuarios;
+    private $usuario;
 
     /**
      * Constructor
@@ -76,7 +66,7 @@ class Listas
     public function __construct()
     {
         $this->idCancion = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->usuarios = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->usuario = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function getIdLista(): ?int
@@ -92,18 +82,6 @@ class Listas
     public function setNombre(?string $nombre): self
     {
         $this->nombre = $nombre;
-
-        return $this;
-    }
-
-    public function getIdUsuario(): ?Usuarios
-    {
-        return $this->idUsuario;
-    }
-
-    public function setIdUsuario(?Usuarios $idUsuario): self
-    {
-        $this->idUsuario = $idUsuario;
 
         return $this;
     }
@@ -135,26 +113,26 @@ class Listas
     }
 
     /**
-     * @return Collection|Usuarios[]
+     * @return Collection|Canciones[]
      */
-    public function getUsuarios(): Collection
+    public function getUsuario(): Collection
     {
-        return $this->usuarios;
+        return $this->usuario;
     }
 
-    public function addUsuario(Usuarios $usuario): self
+    public function addUsuario(Canciones $usuario): self
     {
-        if (!$this->usuarios->contains($usuario)) {
-            $this->usuarios[] = $usuario;
+        if (!$this->usuario->contains($usuario)) {
+            $this->usuario[] = $usuario;
         }
 
         return $this;
     }
 
-    public function removeUsuario(Usuarios $usuario): self
+    public function removeUsuario(Canciones $usuario): self
     {
-        if ($this->usuarios->contains($usuario)) {
-            $this->usuarios->removeElement($usuario);
+        if ($this->usuario->contains($usuario)) {
+            $this->usuario->removeElement($usuario);
         }
 
         return $this;

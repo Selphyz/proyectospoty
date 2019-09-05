@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Canciones
  *
  * @ORM\Table(name="canciones")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\CancionesRepository")
  */
 class Canciones
 {
@@ -26,30 +26,30 @@ class Canciones
     /**
      * @var string|null
      *
-     * @ORM\Column(name="url", type="string", length=100, nullable=true)
+     * @ORM\Column(name="url", type="string", length=100, nullable=true, options={"default"="NULL"})
      */
-    private $url;
+    private $url = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="album", type="string", length=50, nullable=true)
+     * @ORM\Column(name="album", type="string", length=50, nullable=true, options={"default"="NULL"})
      */
-    private $album;
+    private $album = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="compositor", type="string", length=50, nullable=true)
+     * @ORM\Column(name="compositor", type="string", length=50, nullable=true, options={"default"="NULL"})
      */
-    private $compositor;
+    private $compositor = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="titulo", type="string", length=50, nullable=true)
+     * @ORM\Column(name="titulo", type="string", length=50, nullable=true, options={"default"="NULL"})
      */
-    private $titulo;
+    private $titulo = 'NULL';
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -59,11 +59,19 @@ class Canciones
     private $idLista;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Listas", mappedBy="usuario")
+     */
+    private $lista;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->idLista = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->lista = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function getId(): ?int
@@ -142,6 +150,34 @@ class Canciones
         if ($this->idLista->contains($idListum)) {
             $this->idLista->removeElement($idListum);
             $idListum->removeIdCancion($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Listas[]
+     */
+    public function getLista(): Collection
+    {
+        return $this->lista;
+    }
+
+    public function addListum(Listas $listum): self
+    {
+        if (!$this->lista->contains($listum)) {
+            $this->lista[] = $listum;
+            $listum->addUsuario($this);
+        }
+
+        return $this;
+    }
+
+    public function removeListum(Listas $listum): self
+    {
+        if ($this->lista->contains($listum)) {
+            $this->lista->removeElement($listum);
+            $listum->removeUsuario($this);
         }
 
         return $this;
