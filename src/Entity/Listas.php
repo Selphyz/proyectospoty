@@ -48,7 +48,7 @@ class Listas
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Canciones", inversedBy="lista")
+     * @ORM\ManyToMany(targetEntity="Usuarios", inversedBy="lista")
      * @ORM\JoinTable(name="listas_usuarios",
      *   joinColumns={
      *     @ORM\JoinColumn(name="lista_id", referencedColumnName="id_lista")
@@ -113,14 +113,14 @@ class Listas
     }
 
     /**
-     * @return Collection|Canciones[]
+     * @return Collection|Usuarios[]
      */
     public function getUsuario(): Collection
     {
         return $this->usuario;
     }
 
-    public function addUsuario(Canciones $usuario): self
+    public function addUsuario(Usuarios $usuario): self
     {
         if (!$this->usuario->contains($usuario)) {
             $this->usuario[] = $usuario;
@@ -129,7 +129,7 @@ class Listas
         return $this;
     }
 
-    public function removeUsuario(Canciones $usuario): self
+    public function removeUsuario(Usuarios $usuario): self
     {
         if ($this->usuario->contains($usuario)) {
             $this->usuario->removeElement($usuario);

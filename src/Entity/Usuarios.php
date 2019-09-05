@@ -2,22 +2,17 @@
 
 namespace App\Entity;
 
-use App\Entity\Canciones;
-use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Usuarios
  *
  * @ORM\Table(name="usuarios")
  * @ORM\Entity(repositoryClass="App\Repository\UsuariosRepository")
- * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
  */
-class Usuarios implements UserInterface
+class Usuarios
 {
     /**
      * @var int
@@ -31,37 +26,37 @@ class Usuarios implements UserInterface
     /**
      * @var string|null
      *
-     * @ORM\Column(name="usuario", type="string", length=70, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="usuario", type="string", length=256, nullable=true, options={"default"="NULL"})
      */
-    private $username;
-
-    /**
-     * @ORM\Column(type="json")
-     */
-    private $roles = [];
+    private $usuario = 'NULL';
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="password", type="string")
+     * @ORM\Column(name="password", type="string", length=256, nullable=true, options={"default"="NULL"})
      */
-    private $password;
+    private $password = 'NULL';
 
-
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="roles", type="string", length=256, nullable=true, options={"default"="NULL"})
+     */
+    private $roles = 'NULL';
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Canciones", mappedBy="usuario")
+     * @ORM\ManyToMany(targetEntity="Listas", mappedBy="usuario")
      */
-    private $cancion;
+    private $lista;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->cancion = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->lista = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function getId(): ?int
@@ -69,33 +64,14 @@ class Usuarios implements UserInterface
         return $this->id;
     }
 
-    public function getUsername(): ?string
+    public function getUsuario(): ?string
     {
-        return $this->username;
+        return $this->usuario;
     }
 
-    public function setUsername(?string $username): self
+    public function setUsuario(?string $usuario): self
     {
-        $this->username = $username;
-
-        return $this;
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function getRoles(): array
-    {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-
-        return array_unique($roles);
-    }
-
-    public function setRoles(array $roles): self
-    {
-        $this->roles = $roles;
+        $this->usuario = $usuario;
 
         return $this;
     }
@@ -111,38 +87,42 @@ class Usuarios implements UserInterface
 
         return $this;
     }
-    public function getSalt(){
 
+    public function getRoles(): ?string
+    {
+        return $this->roles;
     }
-    public function eraseCredentials(){
 
+    public function setRoles(?string $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
     }
-
-
 
     /**
-     * @return Collection|Canciones[]
+     * @return Collection|Listas[]
      */
-    public function getCancion(): Collection
+    public function getLista(): Collection
     {
-        return $this->cancion;
+        return $this->lista;
     }
 
-    public function addCancion(Canciones $cancion): self
+    public function addListum(Listas $listum): self
     {
-        if (!$this->cancion->contains($cancion)) {
-            $this->cancion[] = $cancion;
-            $cancion->addUsuario($this);
+        if (!$this->lista->contains($listum)) {
+            $this->lista[] = $listum;
+            $listum->addUsuario($this);
         }
 
         return $this;
     }
 
-    public function removeCancion(Canciones $cancion): self
+    public function removeListum(Listas $listum): self
     {
-        if ($this->cancion->contains($cancion)) {
-            $this->cancion->removeElement($cancion);
-            $cancion->removeUsuario($this);
+        if ($this->lista->contains($listum)) {
+            $this->lista->removeElement($listum);
+            $listum->removeUsuario($this);
         }
 
         return $this;

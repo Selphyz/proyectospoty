@@ -59,19 +59,11 @@ class Canciones
     private $idLista;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Listas", mappedBy="usuario")
-     */
-    private $lista;
-
-    /**
      * Constructor
      */
     public function __construct()
     {
         $this->idLista = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->lista = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function getId(): ?int
@@ -150,34 +142,6 @@ class Canciones
         if ($this->idLista->contains($idListum)) {
             $this->idLista->removeElement($idListum);
             $idListum->removeIdCancion($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Listas[]
-     */
-    public function getLista(): Collection
-    {
-        return $this->lista;
-    }
-
-    public function addListum(Listas $listum): self
-    {
-        if (!$this->lista->contains($listum)) {
-            $this->lista[] = $listum;
-            $listum->addUsuario($this);
-        }
-
-        return $this;
-    }
-
-    public function removeListum(Listas $listum): self
-    {
-        if ($this->lista->contains($listum)) {
-            $this->lista->removeElement($listum);
-            $listum->removeUsuario($this);
         }
 
         return $this;
