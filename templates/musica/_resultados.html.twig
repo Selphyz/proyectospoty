@@ -1,22 +1,11 @@
 <h4>Resultados de la búsqueda</h4>
-{% for cancion in canciones  %}
-
-        <div id="pista" class="d-flex justify-content-start bg-primary p-1 hover">
-            <div>
-                <a class="playcancion" cancion="{{ loop.index0 }}">
-                    <i class="fas fa-play-circle"></i>
-                </a>
-                <a style='cursor:pointer' onclick="ns.listaAddCancion({{cancion.id}})" >
-                    <i class="far fa-heart"></i>
-                </a>
-                <i class="fas fa-plus"></i>
-            </div>
-            <div class="informacion pl-2">
-{#                <span class="text-uppercase" name="artista">{{ cancion.artista }}</span>#}
-                <span class="nombre" name="titulo">{{ cancion.url }}</span>
-            </div>
-        </div>
-    
-{% else %}
-    No hay elementos, el campo de búsqueda estaba vacío.
-{% endfor %}
+    <table id='ColaReproduccion'>
+        <thead>
+            <tr>
+                <th data-field='album'>Album</th>
+                <th data-field='url'>URL</th>
+                <th data-field='titulo'>Titulo</th>
+                <th data-formatter='ns.formatearColumna'></th>
+            </tr>
+        </thead>
+    </table>
