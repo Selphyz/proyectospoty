@@ -97,6 +97,13 @@ var ns = {
                     " <i class='fas fa-play-circle' style='cursor: pointer;'></i> " +
                 "</a>";         
     },
+
+    borrarLista: function(id, row, index){
+        
+        return "<a onclick='ns.especifica(" + index + ")' class='playcancion' cancion='" + index + "'> "+ 
+                    " <i class='fas fa-trash-alt' style='cursor: pointer;'></i> " +
+                "</a>";         
+    },
     iniciarColaReproduccion: function(){
         $('#ColaReproduccion').bootstrapTable({
             url: '/jsonListaMusica',
@@ -106,29 +113,64 @@ var ns = {
             pageSize: 5,
             searchAlign:'left', 
             showFooter: false,
+            //onlyInfoPagination: true
             onLoadSuccess: function(){
                 ns.recargarLista();
                 console.log(listado);
-            },            //onlyInfoPagination: true
+            },
         });
     },
+    //Carga las listas
+    iniciarListas: function(){
+        $('#tablaListas').bootstrapTable({
+            url: '/jsonListas',
+            sidePagination: 'server',
+            // pagination: true,
+            // search: true,
+            // pageSize: 5,
+            // searchAlign:'left', 
+            showFooter: false,
+            //onlyInfoPagination: true
+        });
+    },    
 
     listaNueva: function(){
         valor=prompt("Introduce el nombre de la lista");
         $.ajax({
-            url: '/listaNueva/' + encodeUrl(valor),
+            url: '/listaNueva/' + encodeURI(valor),
             success: function(data){
-                alert(data);
+                $('#tablaListas').bootstrapTable('refresh');
             }
         })
     },
+
+    //pendiente de modificar
+    // borrarLista: function(){
+    //     if(confirm("¿Seguro que desea borrar esta lista?")){
+    //         valor=//idLista;
+    //         $.ajax({
+    //             url: '/borrarLista/' + encodeURI(valor),
+    //             success: function(data){
+    //                 //alert("Lista borrada")
+    //                 $('#tablaListas').bootstrapTable('refresh');
+    //             }
+    //         })
+    //     }    
+    // },
     
+    /*
+    if (confirm("Press a button!")) {
+        txt = "You pressed OK!";
+    } else {
+        txt = "You pressed Cancel!";
+    }
+    */
 
     listaAddCancion: function(idCancion){
         idLista=$("input[name='listaSel']:checked").val();
         if (idLista>0){
             $.ajax({
-                url: '/listaAddCancion/' + encodeUrl(idCancion) + '/' + encodeUrl(idLista),
+                url: '/listaAddCancion/' + encodeURI(idCancion) + '/' + encodeURI(idLista),
                 success: function(data){
                     alert(data);
                 }
@@ -139,6 +181,7 @@ var ns = {
 
 
 };
+
 $(document).ready(function(){
     let player=$('#player');
     player.on('ended', function() {
@@ -172,6 +215,9 @@ $(document).ready(function(){
     $('#btnMute').click(function () {
         ns.mute();
     });
+    $('#btnCrearLista').click(function () {
+        ns.listaNueva();
+    });
     $('.volume').change(function () {
         ns.cambiaVol();
     });
@@ -186,10 +232,17 @@ $(document).ready(function(){
         ns.tiempo();
         // console.log($('.trackslider').val());
     });
+    $('#btnRecargar').click(function () {
+        ns.iniciarListas();
+    });
+
     ns.iniciarColaReproduccion();
     player.bind('timeupdate', function () {
         var ahora=$('#player').prop('currentTime');
         var duration=$('#player').prop('duration');
         $('.trackslider').val((ahora/duration)*100);
     })
+
+    ns.iniciarListas();
+
 });

@@ -1,19 +1,13 @@
-<h4>Listas de reproducción</h4>
+<h4>Listas de reproducción<span><button id="btnRecargar" class="btn btn-primary float-right"><i class="fas fa-sync"></i></button></span></h4>
 
-{% for cancion in listaReproduccion %}
+<table id='tablaListas' class="mt-2">
+    <thead>
+        <tr>
+            <th data-field="idLista">ID de la lista</th>
+            <th data-field="nombre">Nombre</th>
+            <th data-formatter='ns.borrarLista'></th>
+        </tr>
+    </thead>
+</table>
 
-    <div class="informacion">
-            <span class="nombre" name="titulo">{{ cancion.url }}</span>
-    </div>
-    
-{% else %}
-    No hay elementos</br>
-    <button id="btnCrearLista" class="btn btn-primary"> <i class="fas fa-plus px-1"></i>Crear nueva lista</button>
-{% endfor %}
-
-{# <i class="fas fa-plus px-1"></i> #}
-{#
-////RADIO BUTTONS LISTAS
-<input type="radio" name='listaSel' value="1" >Lista 1</input>
-<input type="radio" name='listaSel' value="2" >Lista 2</input>
-#}
+<button id="btnCrearLista" class="mt-2 btn btn-primary"> <i class="fas fa-plus px-1"></i>Crear nueva lista</button>

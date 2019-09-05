@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Listas;
 use App\Entity\Canciones;
 use App\Repository\CancionesRepository;
 use Symfony\Component\Serializer\Serializer;
@@ -87,7 +88,20 @@ class MusicaController extends AbstractController
 
         // For instance, return a Response with encoded Json
         return new Response($jsonObject, 200, ['Content-Type' => 'application/json']);
-    }    
+    }
+    
+    /**
+     * @Route("/jsonListas", name="jsonListas")
+     */
+    public function jsonListas()
+    {
+
+        $repo=$this->getDoctrine()->getRepository(Listas::class);
+        $listas=$repo->listas();
+
+        return $this->json($listas);
+
+    }
 
 
 

@@ -47,4 +47,12 @@ class ListasRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function listas(){
+        $dql="select l.idLista, l.nombre from App\Entity\Listas l";
+        $em=$this->getEntityManager();
+        $query=$em->createQuery($dql);
+        return $query->execute();
+           
+    } 
 }
