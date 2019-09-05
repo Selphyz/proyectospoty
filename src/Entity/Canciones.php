@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Canciones
  *
  * @ORM\Table(name="canciones")
- * @ORM\Entity(repositoryClass="App\Repository\CancionesRepository")
+ * @ORM\Entity
  */
 class Canciones
 {
@@ -54,21 +54,6 @@ class Canciones
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Usuarios", inversedBy="cancion")
-     * @ORM\JoinTable(name="canciones_usuarios",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="cancion_id", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
-     *   }
-     * )
-     */
-    private $usuario;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
      * @ORM\ManyToMany(targetEntity="Listas", mappedBy="idCancion")
      */
     private $idLista;
@@ -78,7 +63,6 @@ class Canciones
      */
     public function __construct()
     {
-        $this->usuario = new \Doctrine\Common\Collections\ArrayCollection();
         $this->idLista = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -131,32 +115,6 @@ class Canciones
     public function setTitulo(?string $titulo): self
     {
         $this->titulo = $titulo;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Usuarios[]
-     */
-    public function getUsuario(): Collection
-    {
-        return $this->usuario;
-    }
-
-    public function addUsuario(Usuarios $usuario): self
-    {
-        if (!$this->usuario->contains($usuario)) {
-            $this->usuario[] = $usuario;
-        }
-
-        return $this;
-    }
-
-    public function removeUsuario(Usuarios $usuario): self
-    {
-        if ($this->usuario->contains($usuario)) {
-            $this->usuario->removeElement($usuario);
-        }
 
         return $this;
     }
