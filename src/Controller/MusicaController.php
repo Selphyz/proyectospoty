@@ -106,26 +106,9 @@ class MusicaController extends AbstractController
 
         $repo=$this->getDoctrine()->getRepository(Listas::class);
         $listas=$repo->listas();
-        
-        $res=[
-            'rows'=>$listas
-        ];
 
-        // Tip : Inject SerializerInterface $serializer in the controller method
-        // and avoid these 3 lines of instanciation/configuration
-        $encoders = [new JsonEncoder()]; // If no need for XmlEncoder
-        $normalizers = [new ObjectNormalizer()];
-        $serializer = new Serializer($normalizers, $encoders);
+        return $this->json($listas);
 
-        // Serialize your object in Json
-        $jsonObject = $serializer->serialize($res, 'json', [
-            'circular_reference_handler' => function ($object) {
-                return $object->getId();
-            }
-        ]);
-
-        // For instance, return a Response with encoded Json
-        return new Response($jsonObject, 200, ['Content-Type' => 'application/json']);
     }
 
 

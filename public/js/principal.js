@@ -102,12 +102,12 @@ var ns = {
     },
     iniciarListas: function(){
         $('#tablaListas').bootstrapTable({
-            url: '/jsonListas', //como la de arriba, modificar
+            url: '/jsonListas',
             sidePagination: 'server',
-            pagination: true,
-            search: true,
-            pageSize: 5,
-            searchAlign:'left', 
+            // pagination: true,
+            // search: true,
+            // pageSize: 5,
+            // searchAlign:'left', 
             showFooter: false,
             //onlyInfoPagination: true
         });
@@ -189,4 +189,7 @@ $(document).ready(function(){
         var duration=$('#player').prop('duration');
         $('.trackslider').val((ahora/duration)*100);
     })
+
+    ns.iniciarListas();
+
 });
