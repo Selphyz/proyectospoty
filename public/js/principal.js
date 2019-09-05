@@ -110,9 +110,10 @@ var ns = {
             }
         })
     },
+    
 
     listaAddCancion: function(idCancion){
-        idLista=$('#listaSel').val();
+        idLista=$("input[name='listaSel']:checked").val();
         if (idLista>0){
             $.ajax({
                 url: '/listaAddCancion/' + encodeUrl(idCancion) + '/' + encodeUrl(idLista),
@@ -120,7 +121,6 @@ var ns = {
                     alert(data);
                 }
             })
-    
         }
     },
 
@@ -136,6 +136,12 @@ $(document).ready(function(){
     $('.playcancion').on('click', function(){
         ns.especifica($(this).attr('cancion'));
     });
+    /*$('.listaAddCancion').on('click', function(){
+        ns.($(this).attr('idcancion'));
+    });*/
+
+
+
     $('#btnPrevious').click(function () {
         ns.previous();
     });
