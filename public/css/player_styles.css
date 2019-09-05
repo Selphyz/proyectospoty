@@ -226,10 +226,10 @@ background: #3071a9;
 input[type=range]:focus::-ms-fill-upper {
 background: #367ebd;
 }
-td:nth-of-type(2){
+.busqueda td:nth-of-type(2){
     display: none;
 }
-th:nth-of-type(2){
+.busqueda th:nth-of-type(2){
     display: none;
 }
 

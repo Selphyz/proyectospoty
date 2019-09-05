@@ -96,14 +96,6 @@ class MusicaController extends AbstractController
     public function jsonListas()
     {
 
-        /*$search=c
-        $column=
-        $order=asc
-        $search=$request->query->get('search');
-        $offset=$request->query->get('offset');
-        $limit=$request->query->get('limit');
-        */
-
         $repo=$this->getDoctrine()->getRepository(Listas::class);
         $listas=$repo->listas();
 

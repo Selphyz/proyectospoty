@@ -97,6 +97,13 @@ var ns = {
                     " <i class='fas fa-play-circle' style='cursor: pointer;'></i> " +
                 "</a>";         
     },
+
+    borrarLista: function(id, row, index){
+        
+        return "<a onclick='ns.especifica(" + index + ")' class='playcancion' cancion='" + index + "'> "+ 
+                    " <i class='fas fa-trash-alt' style='cursor: pointer;'></i> " +
+                "</a>";         
+    },
     iniciarColaReproduccion: function(){
         $('#ColaReproduccion').bootstrapTable({
             url: '/jsonListaMusica',
@@ -112,6 +119,7 @@ var ns = {
             },            //onlyInfoPagination: true
         });
     },
+    //Carga las listas
     iniciarListas: function(){
         $('#tablaListas').bootstrapTable({
             url: '/jsonListas',
@@ -134,7 +142,19 @@ var ns = {
             }
         })
     },
-    
+
+    //pendiente de modificar
+    borrarLista: function(){
+        prompt("¿Seguro que desea borrar esta lista?")
+        valor=//idLista;
+        $.ajax({
+            url: '/borrarLista/' + encodeURI(valor),
+            success: function(data){
+                //alert("Lista")
+                $('#tablaListas').bootstrapTable('refresh');
+            }
+        })
+    },    
 
     listaAddCancion: function(idCancion){
         idLista=$("input[name='listaSel']:checked").val();
@@ -205,7 +225,7 @@ $(document).ready(function(){
     $('#btnRecargar').click(function () {
         ns.iniciarListas();
     });
-    
+
     ns.iniciarColaReproduccion();
     player.bind('timeupdate', function () {
         var ahora=$('#player').prop('currentTime');
