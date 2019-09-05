@@ -98,11 +98,9 @@ var ns = {
                 "</a>";         
     },
 
-    borrarLista: function(id, row, index){
+    iconoBorrar: function(id, row, index){
         
-        return "<a onclick='ns.especifica(" + index + ")' class='playcancion' cancion='" + index + "'> "+ 
-                    " <i class='fas fa-trash-alt' style='cursor: pointer;'></i> " +
-                "</a>";         
+        return "<i id='iconoBorrar' class='fas fa-trash-alt' style='cursor: pointer;'></i>";         
     },
     iniciarColaReproduccion: function(){
         $('#ColaReproduccion').bootstrapTable({
@@ -147,11 +145,11 @@ var ns = {
     //pendiente de modificar
     // borrarLista: function(){
     //     if(confirm("¿Seguro que desea borrar esta lista?")){
-    //         valor=//idLista;
+    //         valor=idLista; 
     //         $.ajax({
     //             url: '/borrarLista/' + encodeURI(valor),
     //             success: function(data){
-    //                 //alert("Lista borrada")
+    //                 alert("Lista borrada")
     //                 $('#tablaListas').bootstrapTable('refresh');
     //             }
     //         })
@@ -178,8 +176,6 @@ var ns = {
         }
     },
 
-
-
 };
 
 $(document).ready(function(){
@@ -194,8 +190,6 @@ $(document).ready(function(){
     /*$('.listaAddCancion').on('click', function(){
         ns.($(this).attr('idcancion'));
     });*/
-
-
 
     $('#btnPrevious').click(function () {
         ns.previous();
@@ -235,6 +229,9 @@ $(document).ready(function(){
     $('#btnRecargar').click(function () {
         ns.iniciarListas();
     });
+    // $('#iconoBorrar').click(function () {
+    //     ns.iniciarListas();
+    // });
 
     ns.iniciarColaReproduccion();
     player.bind('timeupdate', function () {

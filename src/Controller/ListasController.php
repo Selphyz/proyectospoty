@@ -28,6 +28,24 @@ class ListasController extends AbstractController
         return $this->json("ok");
     }
 
+        /**
+     * @Route("/borrarLista/{nombre}", name="borrarLista")
+     */
+    public function borrarLista($nombre, EntityManagerInterface $em)
+    {
+        // $user=$this->getUser();
+
+        // $objNuevo=new Listas();
+        // $objNuevo->setNombre($nombre);
+        // $objNuevo->setIdUsuario($user);
+
+        // $em->persist($objNuevo);
+        // $em->flush();
+
+        // return $this->json("ok");
+        alert("Estamos trabajando en ello, no se ha borrado nada");
+    }
+
 
     /**
      * @Route("/listaAddCancion/{idCancion}/{idLista}", name="listaAddCancion")

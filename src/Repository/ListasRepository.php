@@ -48,6 +48,7 @@ class ListasRepository extends ServiceEntityRepository
     }
     */
 
+    //Muestra las listas
     public function listas(){
         $dql="select l.idLista, l.nombre from App\Entity\Listas l";
         $em=$this->getEntityManager();
