@@ -39,7 +39,8 @@ class CancionesRepository extends ServiceEntityRepository
 
     //Limit
     public function colaCancionesTabla($offset, $limit, $search){
-        $dql="select c from App\Entity\Canciones c where c.url like :search";
+        $dql="select c from App\Entity\Canciones c where c.url like :search 
+        or c.titulo like :search or c.album like :search or c.compositor like :search";
         $em=$this->getEntityManager();
         $query=$em->createQuery($dql)
                   ->setParameter('search', '%' . $search . '%')

@@ -1,10 +1,18 @@
-var listado=$('.nombre').map(function(index, element){
-    return element.innerText;
-});
+// var listado=$('.nombre').map(function(index, element){
+//     return element.innerText;
+// });
 
 var s=true;
 var ns = {
     activa: 0,
+    listado: $('td:nth-of-type(2)').map(function(index, element){
+        return element.innerText;
+    }),
+    recargarLista: function(){
+        listado=$('td:nth-of-type(2)').map(function(index, element){
+            return element.innerText;
+        });
+    },
     pause : function(){
         if(s)
         {
@@ -84,8 +92,9 @@ var ns = {
         });
     },
     formatearColumna: function(id, row, index){
-        return "<a class='playcancion' cancion='" + index + "'> "+ 
-                    " <i class='fas fa-play-circle' 'style='cursor: pointer;'></i> " +
+        
+        return "<a onclick='ns.especifica(" + index + ")' class='playcancion' cancion='" + index + "'> "+ 
+                    " <i class='fas fa-play-circle' style='cursor: pointer;'></i> " +
                 "</a>";         
     },
     iniciarColaReproduccion: function(){
@@ -97,7 +106,10 @@ var ns = {
             pageSize: 5,
             searchAlign:'left', 
             showFooter: false,
-            //onlyInfoPagination: true
+            onLoadSuccess: function(){
+                ns.recargarLista();
+                console.log(listado);
+            },            //onlyInfoPagination: true
         });
     },
     iniciarListas: function(){
@@ -122,9 +134,10 @@ var ns = {
             }
         })
     },
+    
 
     listaAddCancion: function(idCancion){
-        idLista=$('#listaSel').val();
+        idLista=$("input[name='listaSel']:checked").val();
         if (idLista>0){
             $.ajax({
                 url: '/listaAddCancion/' + encodeURI(idCancion) + '/' + encodeURI(idLista),
@@ -132,7 +145,6 @@ var ns = {
                     alert(data);
                 }
             })
-    
         }
     },
 
@@ -149,6 +161,12 @@ $(document).ready(function(){
     $('.playcancion').on('click', function(){
         ns.especifica($(this).attr('cancion'));
     });
+    /*$('.listaAddCancion').on('click', function(){
+        ns.($(this).attr('idcancion'));
+    });*/
+
+
+
     $('#btnPrevious').click(function () {
         ns.previous();
     });
